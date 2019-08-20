@@ -1,0 +1,47 @@
+<!--pages/net/netBind.wxml-->
+<view class="container">
+  <view>
+    <image class="title" src="https://z4a.net/images/2019/07/28/netBind_titlef8a6752f1fdc3bc7.png"></image>
+    <view class="content">
+      <view class="hd" style="transform:rotateZ({{angle}}deg);">
+        <image class="logo" src="/images/wfcx.png"></image>
+        <image class="wave" src="/images/wave.png" mode="aspectFill"></image>
+        <image class="wave wave-bg" src="/images/wave.png" mode="aspectFill"></image>
+      </view>
+      <view class="bd">
+        <form class="login-form" bindsubmit="NetQuery">
+          <view class="input-group {{netPassword_focus ? 'active' : ''}}">
+            <text class="input-label">密码</text>
+            <input id='netPassword' name='netPassword' password="true" cursor-spacing="30" placeholder="校园网帐号密码" bindfocus="inputFocus" bindblur="inputBlur"/>
+          </view>
+          <view class="login-help" bindtap="showHelp">
+            <text>帮助</text>
+            <image class="login-help-img" src="/images/help.png"></image>
+          </view>
+           <view>
+          <button formType="submit" class="login-btn">保存</button>
+        </view>
+        </form>
+      </view>
+      <view class="help" id="help" wx:if="{{help_status}}" bindtap="tapHelp">
+        <view class="box">
+          <view class="box-hd">
+            <text class="box-title">帮助</text>
+            <image class="box-close" src="/images/close.png" bindtap="hideHelp"></image>
+          </view>
+          <view class="box-bd">
+            <view class="help-q">1、帐号和密码是什么？</view>
+            <view class="help-a">
+              <text>密码：您的校园网账号上网密码</text>
+              <text>初始密码请查看微信公众号“北京科技大学天津学院智慧校园”，上网方法帮助文章仔细寻找获取默认初始密码方法。</text>
+            </view>
+            <view class="help-q">2、忘记密码？</view>
+            <view class="help-a">
+              <text>请携带学生证和身份证，前往3号教学楼309网络中心重置密码</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

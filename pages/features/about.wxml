@@ -1,0 +1,46 @@
+<view class="container page">
+  <view class="header">
+    <view class="black-cover"> </view>
+    <image class="logo" src="https://z4a.net/images/2019/02/20/blur.jpg"> </image>
+    <image class="title" src="/images/title.png"> </image>
+  </view>
+  <view class="content">
+    <view class="version">
+      <view class="version-title">
+        <text class="title-name">贝壳小盒子</text>
+        <text class="version-text">公测2.2.1</text>
+      </view>
+    </view>
+    <view class="describe">
+      <text class="desc-title">简介</text>
+      <text class="desc-content" style="text-indent:2em;"
+        >贝壳小盒子（ShellBox）是一款QQ小程序（移植自微信小程序版），致力于帮助我们北京科技大学天津学院的师生更方便的查询教务、图书、用电等信息，以及浏览学院校历、拨打各系部电话，并提供校园内地理导航等功能。</text
+      >
+      <text class="desc-content" style="text-indent:2em;">贝壳小盒子目前还处于公测阶段，有一系列新的功能正在我们的开发计划中。“你想要的，都在这里！”。（受QQ小程序支持程度影响，部分功能不可用或体验较差，欢迎大家测试反馈给开发学长）</text>
+      <text class="desc-title">数据来源</text>
+      <text class="desc-content">* 课表、成绩等数据来自教务处官网；\r\n* 图书相关信息来自图书馆官网以及豆瓣；\r\n* 校历、各系部联系电话来自于学院官方网站；\r\n* 用电数据来自智慧校园</text>
+      <text class="desc-title">开发贡献</text>
+      <view class="avatarGroup">
+        <view class="oneAvatar" wx:for="{{coder}}" wx:key="coderkey">
+          <view class="userinfo-avatar">
+            <image src="{{item.avatar}}" style="width:110rpx;height:110rpx;"></image>
+          </view>
+          <view class="coperatorName">{{item.nickName}}</view>
+        </view>
+      </view>
+      <text bindtap="copyID">联系开发学长：QQ745362916</text>
+    </view>
+
+    <view class="button-sp-area" bindtap="notSupport">
+      <button class="weui-btn" type="primary" plain="true" session-from='{"nickName":"{{userInfo.nickName}}", "avatarUrl":"{{userInfo.avatarUrl}}"' open-type="contact">联系客服</button>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-beingshawn">
+      <text>Airmole.</text>
+    </view>
+    <text>贝壳小盒子(ShellBox)</text>
+    <text>Copyright @ 2019 All Rights Reserved</text>
+  </view>
+</view>

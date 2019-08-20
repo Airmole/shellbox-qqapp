@@ -1,0 +1,85 @@
+<page>
+  <view>
+    <view class="cover-container" wx:if="{{doubanStr.images.large}}">
+      <image src="{{doubanStr.images.large}}">
+      </image>
+    </view>
+    <view class="book-meta">
+      <view class="meta-info" wx:if="{{doubanStr.title}}" style='height:150px;'>
+        <text class="book-title">{{doubanStr.title}}</text>
+        <text class="other-meta">作者：{{doubanStr.author[0]}}</text>
+        <text class="other-meta">出版社：{{doubanStr.publisher}}</text>
+        <text class="other-meta">出版日期：{{doubanStr.pubdate}}</text>
+      </view>
+      <view class="range" wx:if="{{doubanStr.rating.average}}">
+        <text class="score">{{doubanStr.rating.average}}</text>
+        <text class="viewers">{{doubanStr.rating.numRaters}}参与</text>
+      </view>
+      <view class="sharerange" style='float:right;' wx:if="{{doubanStr.title}}">
+        <button plain='true' open-type="share" type="primary" hover-class="other-button-hover">
+          <image class="shareIcon" src='/images/share_green.png'></image>分享
+        </button>
+      </view>
+    </view>
+    <view class="book-intro raduis" wx:if='{{doubanStr=="null"}}'>
+      <view class="remind-box">
+        <image class="remind-img" src="/images/nothing.png"></image>
+        <text class="remind-text">只有馆藏信息哦</text>
+      </view>
+    </view>
+    <view class="book-intro raduis" wx:if='{{jsonStr[0][0]=="图书馆系统无响应"}}'>
+      <view class="remind-box">
+        <image class="remind-img" src="/images/nothing.png"></image>
+        <text class="remind-text">图书馆OPAC系统无响应，请耐心等待</text>
+        <text class="remind-text">您可以先看看该书的简介信息</text>
+      </view>
+    </view>
+    <view class="book-intro raduis" wx:elif='{{jsonStr=="无"}}'>
+      <view class="remind-box">
+        <image class="remind-img" src="/images/nothing.png"></image>
+        <text class="remind-text">本校图书馆暂无馆藏</text>
+      </view>
+    </view>
+    <view class="weui-panel weui-panel_access raduis" wx:else>
+      <view class="weui-panel__hd">图书馆馆藏</view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text" wx:for='{{jsonStr}}' wx:key='LibraryStorage'>
+          <view class="weui-media-box__title suoshuNO">索书号：{{item[0]}}</view>
+          <view class="weui-media-box__title suoshuNO">条码号：{{item[1]}}</view>
+          <view class="weui-media-box__title suoshuNO">图书状态：
+            <view class="weui-badge" style="margin-left: 5px;" wx:if='{{item[4]=="可借"}}'>{{item[4]}}</view>
+            <view class="weui-badge" style="margin-left: 5px;background-color:red;" wx:if='{{item[4]!=="可借"}}'>{{item[4]}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-panel__ft">
+        <view class="weui-cell weui-cell_access weui-cell_link" bindtap='goLibrary' data-place="{{jsonStr[0][3]}}">
+          <view class="weui-cell__bd">📍{{jsonStr[0][3]}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="book-intro weui-panel raduis" wx:if="{{doubanStr.summary}}">
+      <view class="intro-header">
+        <text>简介</text>
+      </view>
+      <text class="intro-content">{{doubanStr.summary}}</text>
+    </view>
+    <view class="book-intro" wx:if="{{doubanStr.suthor_intro}}">
+      <view class="intro-header">
+        <text>作者信息</text>
+      </view>
+      <text class="intro-content">{{doubanStr.author_intro}}</text>
+    </view>
+  </view>
+  <!-- 广告位 -->
+  <view class='ads'>
+    <ad unit-id="adunit-62f52651dd5f4ff6"></ad>
+  </view>
+  <!-- 广告位结束 -->
+  <view class="weui-footer">
+    <view class="weui-footer__links">
+      <navigator url="/pages/features/about" class="weui-footer__link">Airmole.</navigator>
+    </view>
+     <view class="weui-footer__text">Copyright © 2019 贝壳小盒子(ShellBox)</view>
+  </view>
+</page>
