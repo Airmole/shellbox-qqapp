@@ -3,10 +3,15 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
-		"postcss": true,
+		"postcss": false,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": true,
+		"nodeModules": true,
+		"sourcemapDisabled": true,
+		"uglifyFileName": true,
+		"useAlphaLib": true,
+		"remoteDebugLogEnable": false
 	},
 	"compileType": "miniprogram",
 	"createTime": 1564200310410,
@@ -19,6 +24,11 @@
 	},
 	"qqappid": "1109608669",
 	"projectname": "%E8%B4%9D%E5%A3%B3%E5%B0%8F%E7%9B%92%E5%AD%90",
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
 	"condition": {
 		"search": {
 			"current": -1,
