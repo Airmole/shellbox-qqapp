@@ -102,6 +102,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
+        qq.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+    });
     return {
       title: this.data.zhai + '斋' + this.data.room + '寝室' + '的用电信息',
       path: 'pages/electricity/electricityFare?zhai=' + this.data.zhai + "&room=" + this.data.room

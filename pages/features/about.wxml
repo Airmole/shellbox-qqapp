@@ -28,7 +28,7 @@
           <view class="coperatorName">{{item.nickName}}</view>
         </view>
       </view>
-      <text bindtap="copyID">联系开发学长：QQ745362916</text>
+      <text bindtap="copyID" id="AirmoleQQ">联系开发学长：QQ745362916</text>
     </view>
 
     <view class="button-sp-area" bindtap="notSupport">

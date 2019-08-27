@@ -12,17 +12,17 @@ Page({
       avatar: 'https://z4a.net/images/2019/06/22/_20180513195821.th.jpg',
       nickName: 'Airmole'
     }, {
-        avatar: 'https://z4a.net/images/2019/07/24/_20190724200849.th.jpg',
+      avatar: 'https://z4a.net/images/2019/07/24/_20190724200849.th.jpg',
       nickName: '很奔放'
     }],
     servicer: [{
       avatar: 'https://z4a.net/images/2019/06/22/_20180513195821.th.jpg',
       nickName: 'Airmole'
     }, {
-        avatar: 'https://z4a.net/images/2019/07/24/_20190724200849.th.jpg',
+      avatar: 'https://z4a.net/images/2019/07/24/_20190724200849.th.jpg',
       nickName: '很奔放'
     }, {
-        avatar: 'https://z4a.net/images/2019/06/22/hzj.th.jpg',
+      avatar: 'https://z4a.net/images/2019/06/22/hzj.th.jpg',
       nickName: 'hzj'
     }, {
       avatar: 'https://z4a.net/images/2019/06/22/zhx.th.jpg',
@@ -30,21 +30,25 @@ Page({
     }, {
       avatar: 'https://z4a.net/images/2019/06/22/fwj.th.jpg',
       nickName: '非晚'
-      }],
+    }],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     that.setData({
       width: wx.getSystemInfoSync().windowWidth * 0.9 + 'px',
       height: wx.getSystemInfoSync().windowWidth * 0.9 * 0.5625 + 'px'
     })
 
+    qq.pageScrollTo({
+      scrollTop: 500,
+      duration: 3000
+    })
   },
-  copyID: function() {
+  copyID: function () {
     wx.setClipboardData({
       data: 'wxf0ba93e3faff4eda'
     })
@@ -57,11 +61,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function () {
+    qq.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+    });
   },
-  notSupport:function(){
-    console.log("ddd");
+  notSupport: function () {
     app.notSupport();
   }
 })

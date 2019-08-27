@@ -72,6 +72,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
+        qq.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+    });
     var that = this;
     if (res.from === 'button') {
       // 来自页面内转发按钮

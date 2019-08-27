@@ -51,6 +51,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
+        qq.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+    });
     return {
       title: '北京科技大学天津学院校历',
       path: 'pages/calendar/calendar',
