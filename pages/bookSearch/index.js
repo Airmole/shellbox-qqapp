@@ -1,7 +1,10 @@
-var app = getApp()
+var app = getApp();
+var timeJs = require('../../utils/time.js');
+var utilsJs = require('../../utils/util.js');
 Page({
   data: {
-    offlinePeronalClass: '',
+    offlinePeronalClass: 'null', //缓存的今天全天的课表数组
+    nextCourse: "null",
     inputShowed: false,
     adsError: false,
     isLoading: '加载中',
@@ -13,49 +16,44 @@ Page({
     keywordStr: '',
     SearchType: '02',
     radioItems: [{
-      name: '书名',
-      value: '02',
-      checked: true
-    },
-    {
-      name: '作者',
-      value: '03'
-    }, {
-      name: '主题',
-      value: '04'
-    },
-    {
-      name: '出版社',
-      value: '09'
-    }
+        name: '书名',
+        value: '02',
+        checked: true
+      },
+      {
+        name: '作者',
+        value: '03'
+      }, {
+        name: '主题',
+        value: '04'
+      },
+      {
+        name: '出版社',
+        value: '09'
+      }
     ]
   },
-  onLoad: function () {
-
-    app.globalData.pwd = "";
-    wx.setStorageSync('pwd', '');
+  onLoad: function() {
 
     this.checkEffectiveIdAndPasswoed();
-    var personalClass = wx.getStorageSync('personalClass');
-    if (personalClass != '') {
-      this.setTodayOfflineClass();
-    }
+
   },
-  onReady: function () {
+  onReady: function() {
 
   },
 
-  onShow: function () {
+  onShow: function() {
     this.onLoad();
   },
-  setTodayOfflineClass: function () {
-    var personalClass = wx.getStorageSync('personalClass');
+  setTodayOfflineClass: function(personalClass) {
     var that = this;
     var date = new Date();
-    let dayOfWeek = date.getDay();
-    let weekArr = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-    personalClass = personalClass.course[weekArr[dayOfWeek]];
+    var dayOfWeek = date.getDay();
+    var weekArr = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
     var createArr = [];
+    var nextCourseArr = [];
+
+    personalClass = personalClass.course[weekArr[dayOfWeek]];
     for (let i in personalClass) {
       if (personalClass[i].length > 1) {
         for (let j in personalClass[i]) {
@@ -65,12 +63,32 @@ Page({
         createArr.push(personalClass[i]);
       }
     }
-    console.log();
+    let nowMintues = date.getMinutes();
+    if (nowMintues < 10) {
+      nowMintues = "0" + nowMintues;
+    }
+    var nowTime = date.getHours() + ':' + nowMintues;
+    // console.log(createArr);
+    for (let i = 0; i < createArr.length; i++) {
+      if (createArr[i]['startTime'] != '') {
+        // if (timeJs.CompareDate(nowTime, createArr[i]['startTime']) && utilsJs.needThisWeekGo(that.data.jsonStr.teachWeek, createArr[i]['teachWeek'])) {
+        //   nextCourseArr = createArr[i];
+        // }
+        if (timeJs.CompareDate(nowTime, createArr[i]['startTime'])) {
+          nextCourseArr = createArr[i];
+          break;
+        }
+      }
+    }
+    console.log(nextCourseArr)
     that.setData({
       offlinePeronalClass: createArr,
+      nextCourse: nextCourseArr
     })
+
+
   },
-  checkEffectiveIdAndPasswoed: function () {
+  checkEffectiveIdAndPasswoed: function() {
     var that = this;
     var uid = wx.getStorageSync('uid');
     var pwd = wx.getStorageSync('newpwd');
@@ -86,32 +104,32 @@ Page({
       })
     }
   },
-  isShowAllCourse: function () {
+  isShowAllCourse: function() {
     this.setData({
       isShowAllCourse: !this.data.isShowAllCourse
     })
   },
-  showInput: function () {
+  showInput: function() {
     this.setData({
       inputShowed: true
     });
   },
-  onBindFocus: function (event) {
+  onBindFocus: function(event) {
 
   },
-  onBindBlur: function (event) {
+  onBindBlur: function(event) {
     this.setData({
       inputVal: "",
       inputShowed: false
     })
   },
-  hideInput: function () {
+  hideInput: function() {
     this.setData({
       inputVal: "",
       inputShowed: false
     });
   },
-  radioChange: function (e) {
+  radioChange: function(e) {
     console.log(e.detail.value);
     this.setData({
       SearchType: e.detail.value
@@ -124,18 +142,18 @@ Page({
       radioItems: radioItems,
     });
   },
-  inputTyping: function (e) {
+  inputTyping: function(e) {
     this.setData({
       keyword: e.detail.value
     });
     // console.log("输入了" + this.data.keyword);
   },
-  clearInput: function () {
+  clearInput: function() {
     this.setData({
       inputVal: ""
     });
   },
-  searchIt: function (e) {
+  searchIt: function(e) {
     var that = this;
     if (that.data.keyword == 0) {
       wx.showToast({
@@ -151,7 +169,7 @@ Page({
       })
       wx.request({
         url: app.globalData.apiURL + '/book/booksearch_adv.php?type=' + that.data.SearchType + '&keyword=' + that.data.keyword,
-        success: function (res) {
+        success: function(res) {
           that.setData({
             keywordStr: res.data,
           })
@@ -177,7 +195,7 @@ Page({
       })
     }
   },
-  getWelcomeJson: function (uid, pwd, zhai, room, netPassword) {
+  getWelcomeJson: function(uid, pwd, zhai, room, netPassword) {
     var that = this;
     wx.request({
       url: app.globalData.apiURL + '/v2/welcome.php',
@@ -192,13 +210,14 @@ Page({
         zhai: zhai,
         room: room,
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           jsonStr: res.data
         })
         console.log(res.data);
         var uid = wx.getStorageSync('uid');
         var pwd = wx.getStorageSync('newpwd');
+        var personalClass = wx.getStorageSync('personal19Class');
         if (res.data.todayCourse.getCourseStatus != 403) {
           that.setData({
             isLoading: "finished",
@@ -208,7 +227,13 @@ Page({
             that.setData({
               isLogined: false
             })
+          } else {
+            if (personalClass != '') {
+              console.log(personalClass)
+              that.setTodayOfflineClass(personalClass);
+            }
           }
+
         } else {
           that.setData({
             isLoading: "finished",
@@ -222,7 +247,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     var that = this;
     that.onLoad();
     wx.stopPullDownRefresh();
@@ -232,38 +257,24 @@ Page({
       duration: 3000
     })
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     //拉到底了，做点什么好呢
   },
-  adsError: function (e) {
+  adsError: function(e) {
     console.log(e)
     var that = this;
     that.setData({
       adsError: true
     })
   },
-  bindGetUserInfo: function (e) {
+  bindGetUserInfo: function(e) {
     console.log(e);
+    app.globalData.nickName = e.detail.userInfo.nickName;
     this.toLogin();
   },
-  toLogin: function () {
+  toLogin: function() {
     wx.navigateTo({
       url: '/pages/index/index',
     })
   },
-  onShareAppMessage(res) {
-    qq.showShareMenu({
-      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
-    });
-    return {
-      title: '还没用过 “贝壳小盒子”😱还不快来试试？',
-      path: 'pages/features/features',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
-  }
 });

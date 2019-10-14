@@ -10,7 +10,7 @@
     <button bindtap='goBack' class="login-btn">
       <text>返回</text>
     </button>
-    <button open-type='contact' class="login-btn" bindtap="notSupport">
+    <button open-type='contact' class="login-btn">
       <text>联系客服</text>
     </button>
   </view>

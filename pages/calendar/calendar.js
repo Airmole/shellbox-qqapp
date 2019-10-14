@@ -14,7 +14,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 调用函数时，传入new Date()参数，返回值是日期和时间  
     var time = util.formatTime(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
@@ -26,7 +26,7 @@ Page({
         that.setData({
           jsonContent: res.data,
         })
-        setTimeout(function() {
+        setTimeout(function () {
           that.setData({
             isLoading: false
           });
@@ -37,29 +37,32 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function(res) {
-        qq.showShareMenu({
+  onShareAppMessage: function (res) {
+    qq.showShareMenu({
       showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
     });
+  },
+  onShareAppMessage: function (res) {
+
     return {
       title: '北京科技大学天津学院校历',
       path: 'pages/calendar/calendar',
     }
   },
-  showPic: function() {
+  showPic: function () {
     wx.previewImage({
       current: 'https://z4a.net/images/2019/06/22/19-20II.jpg', // 当前显示图片的http链接
       urls: ["https://z4a.net/images/2019/06/22/19-20II.jpg"] // 需要预览的图片http链接列表

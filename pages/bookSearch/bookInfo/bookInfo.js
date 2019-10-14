@@ -50,9 +50,6 @@ Page({
     })
   },
   onShareAppMessage: function(res) {
-        qq.showShareMenu({
-      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
-    });
     console.log(this)
     return {
       title: '我在北科天院图书馆找到本《' + this.data.doubanStr.title + '》,你也来看看吧~',

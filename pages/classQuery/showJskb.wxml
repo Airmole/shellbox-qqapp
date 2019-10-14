@@ -1,3 +1,4 @@
+<!--pages/classQuery/showJskb.wxml-->
 <view class="remind-box" wx:if="{{isLoading}}">
   <image class="remind-img" src="/images/loading.gif"></image>
 </view>
@@ -32,13 +33,16 @@
           <view wx:for="{{_days}}" wx:key="*this" class="kb-title-item">
             <text>周{{item}}</text>
           </view>
+          <view class="kb-title-itemTime">
+            <text>时间</text>
+          </view>
         </block>
       </view>
 
       <!-- 卡片部分 -->
       <view class="kb-cards-ctn blur-area {{blur?'blur':''}}">
         <!-- 每一列为一组 -->
-        <view class="kb-cards-column" wx:for="{{classJson.course}}" wx:for-index="Kkey" wx:for-item="Vvalue" wx:key="fjbbk">
+        <view class="kb-cards-column" wx:for="{{classJson.class}}" wx:for-index="Kkey" wx:for-item="Vvalue" wx:key="fjbbk">
 
           <!-- 今天提示 -->
           <block wx:if="{{Kkey == whichDayOfWeek}}">
@@ -46,12 +50,12 @@
           </block>
 
           <!-- 循环周一当天的的6节课 -->
-          <block wx:for="{{classJson.course[Kkey]}}" wx:for-index="key" wx:for-item="value" wx:if='{{ item.courseName !== "" }}' wx:key="fjbk">
+          <block wx:for="{{classJson.class[Kkey]}}" wx:for-index="key" wx:for-item="value" wx:if='{{ item.courseName !== "" }}' wx:key="fjbk">
             <!-- 有同节异周课 -->
             <view class="kb-card mg-12" wx:if="{{value.length>1}}">
-              <view data-json="{{value}}" data-courseName="{{value[0].courseName}} {{value[1].courseName}} {{value[2].courseName}} {{value[3].courseName}}" data-place="{{value[0].place}} {{value[1].place}} {{value[2].place}} {{value[3].place}}" data-whichJie="{{key}}"
-                bindtap="showDetail" class="mg-8 kb-card-content green">
-                <text class="kb-card-place-words">{{value.length}}项课程同节异周</text>
+              <view data-json="{{value}}" data-courseName="{{value[0].courseName}} {{value[1].courseName}} {{value[2].courseName}} {{value[3].courseName}}" data-place="{{value[0].teachPlace}} {{value[1].teachPlace}} {{value[2].teachPlace}} {{value[3].teachPlace}}"
+                data-whichJie="{{key+1}}" bindtap="showDetail" class="mg-8 kb-card-content green">
+                <text class="kb-card-place-words">{{value.length}}项课程同师异周</text>
                 <view class="kb-card-name">
                   <text class="kb-card-name-text" style="-webkit-line-clamp:{{3*(cards.number-1)}};">点击展开查看</text>
                 </view>
@@ -59,9 +63,8 @@
             </view>
             <!-- 无同节异周课 -->
             <view class="kb-card mg-12" wx:else>
-              <view data-courseName="{{value.courseName}}" data-teacher="{{value.teacher}}" data-teachWeek="{{value.teachWeek}}" data-place="{{value.place}}" data-startTime="{{value.startTime}}" data-endTime="{{value.endTime}}" data-whichJie="{{key}}" bindtap="showDetail"
-                class="mg-8 kb-card-content green" wx:if="{{ value.courseName != ''}}">
-                <text class="kb-card-place-words">{{value.place}}</text>
+              <view data-courseName="{{value.courseName}}" data-teachWeek="{{value.teachWeek}}" data-place="{{value.teachPlace}}" data-whichJie="{{key+1}}" bindtap="showDetail" class="mg-8 kb-card-content green" wx:if="{{ value.courseName != ''}}">
+                <text class="kb-card-place-words">{{value.teachPlace}}</text>
                 <view class="kb-card-name">
                   <text class="kb-card-name-text" style="-webkit-line-clamp:{{3*(cards.number-1)}};">{{value.courseName}}</text>
                 </view>
@@ -69,7 +72,32 @@
             </view>
           </block>
         </view>
+
+        <!-- 时间列 -->
+        <view class="kb-cards-columnTime">
+          <block wx:for="{{timeRow}}" wx:key="timeRowK">
+            <view class="kb-cardTime mg-12">
+              <view class="mg-8 kb-card-contentTime">
+                <text class="kb-card-place-wordsTime">{{item.l1}}</text>
+                <text class="kb-card-place-wordsTime">{{item.t1}}</text>
+                <text class="kb-card-place-wordsTime">{{item.l2}}</text>
+                <text class="kb-card-place-wordsTime">{{item.t2}}</text>
+              </view>
+            </view>
+          </block>
+          <view class="kb-cardTime mg-12">
+            <view class="mg-8 kb-card-contentTime">
+              <text class="kb-card-place-wordsTime2">第十一节课</text>
+              <text class="kb-card-place-wordsTime2">19:10-19:55</text>
+              <text class="kb-card-place-wordsTime2">第十二节课</text>
+              <text class="kb-card-place-wordsTime2">20:00-20:45</text>
+              <text class="kb-card-place-wordsTime2">第十三节课</text>
+              <text class="kb-card-place-wordsTime2">20:50-21:35</text>
+            </view>
+          </view>
+        </view>
       </view>
+
 
       <!-- 遮罩层 -->
       <view bindtap="hideDetail" class="kb-detail" wx:if="{{blur}}">
@@ -88,7 +116,7 @@
   <!-- 底部 -->
   <view class="kb-info-ctn {{blur?'kb-info-ctn-open':''}}" catchtouchmove="catchMoveDetail">
     <view class="kb-info-title" wx:if="{{blur && activeClass.json.length>0}}">
-      <text class="kb-info-week">{{classJson.teachWeek}}周{{classJson.dayOfWeek}}</text>
+      <text class="kb-info-week">{{classJson.teacherName}}老师的课表</text>
       <view class="kb-lesson-time">
         <block wx:for="{{activeClass.json}}" wx:for-index="key" wx:key="iitteemm">
           <text class="version-text {{activeClassItem == key?'bdwz':''}}" bindtap='changeActiveItem' data-num="{{key}}">课程{{key+1}}</text>
@@ -97,8 +125,7 @@
       <image class="kb-info-card-close" src="/images/down_w.png" bindtap="hideDetail"></image>
     </view>
     <view class="kb-info-title" wx:else>
-      <text class="kb-info-week">{{classJson.teachWeek}}周{{classJson.dayOfWeek}}</text>
-      <text class="kb-lesson-time">{{classJson.schoolYear}}学年第{{classJson.semester}}学期</text>
+      <text class="kb-lesson-time">{{classJson.teacherName}}老师的课表</text>
       <image class="kb-info-card-close" src="/images/down_w.png" bindtap="hideDetail"></image>
     </view>
 
@@ -116,7 +143,7 @@
             <view class="info-list">
               <text class="info-text">{{activeClass.whichjie}}</text>
               <view class="info-item">
-                <text class="info-item-value">教师：</text> {{activeClass.json[activeClassItem].teacher}}
+                <text class="info-item-value">教师：</text> {{classJson.teacherName}}
               </view>
               <view class="info-item" bindtap='goClassPlace' data-place="{{activeClass.json[activeClassItem].place}}">
                 <text class="info-item-value">地点：</text> {{activeClass.json[activeClassItem].place}}（📍前往）
@@ -124,15 +151,12 @@
               <view class="info-item">
                 <text class="info-item-value">上课周：</text> {{activeClass.json[activeClassItem].teachWeek}}
               </view>
-              <view class="info-item">
-                <text class="info-item-value">上课：</text> {{activeClass.json[activeClassItem].startTime}}
-              </view>
-              <view class="info-item">
-                <text class="info-item-value">下课：</text> {{activeClass.json[activeClassItem].endTime}}
-              </view>
             </view>
           </view>
         </view>
+
+
+
 
         <view class="kb-info-card-content" wx:else>
           <view class="info-name">
@@ -145,19 +169,13 @@
             <view class="info-list">
               <text class="info-text">{{activeClass.whichjie}}</text>
               <view class="info-item">
-                <text class="info-item-value">教师：</text> {{activeClass.teacher}}
+                <text class="info-item-value">教师：</text> {{classJson.teacherName}}
               </view>
-              <view class="info-item" bindtap='goClassPlace' data-place="{{activeClass.place}}">
+              <view class="info-item" bindtap='goClassPlace' data-place="{{activeClass.place[0]}}">
                 <text class="info-item-value">地点：</text> {{activeClass.place}}（📍前往）
               </view>
               <view class="info-item">
                 <text class="info-item-value">上课周：</text> {{activeClass.teachweek}}
-              </view>
-              <view class="info-item">
-                <text class="info-item-value">上课：</text> {{activeClass.starttime}}
-              </view>
-              <view class="info-item">
-                <text class="info-item-value">下课：</text> {{activeClass.endtime}}
               </view>
             </view>
           </view>

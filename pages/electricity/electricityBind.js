@@ -85,10 +85,9 @@ Page({
     this.setData({
       'room': e.detail.value
     });
-    //QQ小程序暂不支持
-    // if (e.detail.value.length >= 3) {
-    //   wx.hideKeyboard();
-    // }
+    if (e.detail.value.length >= 3) {
+      wx.hideKeyboard();
+    }
   },
   //提交表单
   formSubmit: function (e) {

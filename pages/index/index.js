@@ -51,7 +51,7 @@ Page({
       });
     } else {
       wx.request({
-        url: app.globalData.apiURL + '/v2/profile.php',
+        url: app.globalData.apiURL + '/v4/profile.php',
         method: "POST",
         header: {
           'content-type': 'application/x-www-form-urlencoded',
@@ -91,7 +91,7 @@ Page({
             wx.setStorageSync('uid', uid);
             wx.setStorageSync('newpwd', pwd);
             wx.navigateTo({
-              url: '/pages/welcome/welcome?uid=' + uid + '&pwd=' + pwd + '&cookie=' + that.data.PreInfo.cookie + '&vcode=' + vcode,
+              url: '/pages/welcome/welcome?uid=' + uid + '&name=' + res.data.name + '&classroom=' + res.data.classroom,
             })
           } else {
             wx.showToast({
@@ -120,10 +120,9 @@ Page({
     });
   },
   UidInput: function(e) {
-    // QQ小程序对这个支持不太好
-    // if (e.detail.value.length >= 9) {
-    //   wx.hideKeyboard();
-    // }
+    if (e.detail.value.length >= 9) {
+      wx.hideKeyboard();
+    }
   },
   inputFocus: function(e) {
     if (e.target.id == 'userid') {

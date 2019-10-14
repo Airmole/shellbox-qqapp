@@ -11,7 +11,8 @@
     "pages/features/about",
     "pages/welcome/welcome",
     "pages/classQuery/index",
-    "pages/classQuery/class",
+    "pages/classQuery/jskb",
+    "pages/classQuery/showJskb",
     "pages/score/score",
     "pages/calendar/calendar",
     "pages/error/queryerror",
@@ -53,5 +54,6 @@
     "scope.userLocation": {
       "desc": "你的位置信息将用于校园导航定位"
     }
-  }
+  },
+  "sitemapLocation": "sitemap33.json"
 }
