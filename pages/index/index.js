@@ -119,11 +119,6 @@ Page({
       'help_status': false
     });
   },
-  UidInput: function(e) {
-    if (e.detail.value.length >= 9) {
-      wx.hideKeyboard();
-    }
-  },
   inputFocus: function(e) {
     if (e.target.id == 'userid') {
       this.setData({
