@@ -11,41 +11,54 @@ Page({
     isShowAllCourse: false,
     isLogined: false,
     keyword: "",
+    isRuleTrue: false,
     jsonStr: "",
     dayOfWeek: '',
     keywordStr: '',
     SearchType: '02',
     radioItems: [{
-        name: '书名',
-        value: '02',
-        checked: true
-      },
-      {
-        name: '作者',
-        value: '03'
-      }, {
-        name: '主题',
-        value: '04'
-      },
-      {
-        name: '出版社',
-        value: '09'
-      }
+      name: '书名',
+      value: '02',
+      checked: true
+    },
+    {
+      name: '作者',
+      value: '03'
+    }, {
+      name: '主题',
+      value: '04'
+    },
+    {
+      name: '出版社',
+      value: '09'
+    }
     ]
   },
-  onLoad: function() {
+  onLoad: function () {
 
     this.checkEffectiveIdAndPasswoed();
 
+    var sawBirthTips = wx.getStorageSync('zlxBirth');
+    if (sawBirthTips == 'saw') {
+      sawBirthTips = false;
+    } else {
+      sawBirthTips = true;
+    }
+    var nowTimestamp = new Date().getTime();
+    if ((nowTimestamp < '1571932799000' && nowTimestamp > '1571865600000') && sawBirthTips) {
+      this.setData({
+        isRuleTrue: true,
+      })
+    }
   },
-  onReady: function() {
+  onReady: function () {
 
   },
 
-  onShow: function() {
+  onShow: function () {
     this.onLoad();
   },
-  setTodayOfflineClass: function(personalClass) {
+  setTodayOfflineClass: function (personalClass) {
     var that = this;
     var date = new Date();
     var dayOfWeek = date.getDay();
@@ -88,7 +101,7 @@ Page({
 
 
   },
-  checkEffectiveIdAndPasswoed: function() {
+  checkEffectiveIdAndPasswoed: function () {
     var that = this;
     var uid = wx.getStorageSync('uid');
     var pwd = wx.getStorageSync('newpwd');
@@ -104,32 +117,32 @@ Page({
       })
     }
   },
-  isShowAllCourse: function() {
+  isShowAllCourse: function () {
     this.setData({
       isShowAllCourse: !this.data.isShowAllCourse
     })
   },
-  showInput: function() {
+  showInput: function () {
     this.setData({
       inputShowed: true
     });
   },
-  onBindFocus: function(event) {
+  onBindFocus: function (event) {
 
   },
-  onBindBlur: function(event) {
+  onBindBlur: function (event) {
     this.setData({
       inputVal: "",
       inputShowed: false
     })
   },
-  hideInput: function() {
+  hideInput: function () {
     this.setData({
       inputVal: "",
       inputShowed: false
     });
   },
-  radioChange: function(e) {
+  radioChange: function (e) {
     console.log(e.detail.value);
     this.setData({
       SearchType: e.detail.value
@@ -142,18 +155,18 @@ Page({
       radioItems: radioItems,
     });
   },
-  inputTyping: function(e) {
+  inputTyping: function (e) {
     this.setData({
       keyword: e.detail.value
     });
     // console.log("输入了" + this.data.keyword);
   },
-  clearInput: function() {
+  clearInput: function () {
     this.setData({
       inputVal: ""
     });
   },
-  searchIt: function(e) {
+  searchIt: function (e) {
     var that = this;
     if (that.data.keyword == 0) {
       wx.showToast({
@@ -169,7 +182,7 @@ Page({
       })
       wx.request({
         url: app.globalData.apiURL + '/book/booksearch_adv.php?type=' + that.data.SearchType + '&keyword=' + that.data.keyword,
-        success: function(res) {
+        success: function (res) {
           that.setData({
             keywordStr: res.data,
           })
@@ -195,7 +208,7 @@ Page({
       })
     }
   },
-  getWelcomeJson: function(uid, pwd, zhai, room, netPassword) {
+  getWelcomeJson: function (uid, pwd, zhai, room, netPassword) {
     var that = this;
     wx.request({
       url: app.globalData.apiURL + '/v2/welcome.php',
@@ -210,7 +223,7 @@ Page({
         zhai: zhai,
         room: room,
       },
-      success: function(res) {
+      success: function (res) {
         that.setData({
           jsonStr: res.data
         })
@@ -247,7 +260,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     var that = this;
     that.onLoad();
     wx.stopPullDownRefresh();
@@ -257,24 +270,35 @@ Page({
       duration: 3000
     })
   },
-  onReachBottom: function() {
+  onReachBottom: function () {
     //拉到底了，做点什么好呢
   },
-  adsError: function(e) {
+  adsError: function (e) {
     console.log(e)
     var that = this;
     that.setData({
       adsError: true
     })
   },
-  bindGetUserInfo: function(e) {
+  bindGetUserInfo: function (e) {
     console.log(e);
     app.globalData.nickName = e.detail.userInfo.nickName;
     this.toLogin();
   },
-  toLogin: function() {
+  toLogin: function () {
     wx.navigateTo({
       url: '/pages/index/index',
     })
+  },
+  showRule: function () {
+    this.setData({
+      isRuleTrue: true
+    })
+  },
+  hideRule: function () {
+    this.setData({
+      isRuleTrue: false
+    })
+    wx.setStorageSync('zlxBirth', 'saw');
   },
 });

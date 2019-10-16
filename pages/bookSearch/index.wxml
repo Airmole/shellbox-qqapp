@@ -6,11 +6,21 @@
       <text class="card-item-icon">📖</text>
       <text class="card-item-name">图书检索查询</text>
     </view>
-    <view class="weui-search-bar" style='background-color:#fff;border-top:0rpx;'>
+    <view class="weui-search-bar" style="background-color:#fff;border-top:0rpx;">
       <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder="输入您要检索的图书关键字" value="{{inputVal}}" focus="{{inputShowed}}" bindconfirm="searchIt" bindfocus="onBindFocus" confirm-type='search' bindinput="inputTyping" />
+          <input
+            type="text"
+            class="weui-search-bar__input"
+            placeholder="输入您要检索的图书关键字"
+            value="{{inputVal}}"
+            focus="{{inputShowed}}"
+            bindconfirm="searchIt"
+            bindfocus="onBindFocus"
+            confirm-type="search"
+            bindinput="inputTyping"
+          />
         </view>
         <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
           <icon class="weui-icon-search" type="search" size="14"></icon>
@@ -21,25 +31,33 @@
     </view>
     <view class="card-item-bd">
       <view class="page-section page-section-gap radios">
-        <view class='blockView'>
+        <view class="blockView">
           <radio-group class="radio-group" bindchange="radioChange">
-            <label class="radio" wx:for="{{radioItems}}" wx:key="radios">
-              <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
-            </label>
+            <label class="radio" wx:for="{{radioItems}}" wx:key="radios"> <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}} </label>
           </radio-group>
         </view>
-        <button class="mini-btn" type="primary" size="mini" bindtap='searchIt'>查找</button>
+        <button class="mini-btn" type="primary" size="mini" bindtap="searchIt">查找</button>
       </view>
     </view>
   </view>
 
+  <!-- 生日 -->
+  <view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}">
+    <view class="ruleZhezhaoContent">
+      <view class="ruleZhezhaoText">
+        <image src="https://z4a.net/images/2019/10/16/72797c15ac21d438cec3e8167036e4cd.jpg" style="width:360px;height:550px;"></image>
+      </view>
+      <image src="/images/close.png" class="ruleHide" bindtap="hideRule"></image>
+    </view>
+  </view>
+
   <!-- loading -->
-  <view wx:if="{{isLoading == '加载中'}}" class="remind-box" style='margin-top:-200px;'>
+  <view wx:if="{{isLoading == '加载中'}}" class="remind-box" style="margin-top:-200px;">
     <image class="remind-img" src="/images/loading.gif"></image>
   </view>
 
   <!-- 未登录提示 -->
-  <view wx:elif="{{!isLogined}}" class="remind-box" style='margin-top:-260rpx;'>
+  <view wx:elif="{{!isLogined}}" class="remind-box" style="margin-top:-260rpx;">
     <image class="remind-img" src="/images/nothing.png"></image>
     <text class="remind-text">您咋还没绑定学号呢？</text>
     <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">绑定登录</button>
@@ -48,31 +66,15 @@
   <!--卡片列表-->
   <view wx:else class="main-card">
     <!-- 公告通知栏 -->
-    <view class='NoticeBar' wx:if='{{jsonStr.notice != "N/A"}}'>
+    <view class="NoticeBar" wx:if='{{jsonStr.notice != "N/A"}}'>
       <wux-notice-bar loop>
         {{jsonStr.notice}}
       </wux-notice-bar>
     </view>
 
-    <!-- 教务关闭，无法访问 -->
-    <!-- <view class="main-card-item" id='jwClosed' wx:if="{{jsonStr.todayCourse.getCourseStatus == 500}}">
-      <view class="card-item-hd">
-        <text class="card-item-icon">⚠</text>
-        <text class="card-item-name">Error</text>🤕
-      </view>
-      <view class="card-item-bd">
-        <view class="book-intro raduis">
-          <view class="remind-box">
-            <image class="noDisplay" src="/images/holiday.png"></image>
-            <text class="remind-text">教务不公布课表,小盒子哪儿敢瞎编啊</text>
-          </view>
-        </view>
-      </view>
-    </view> -->
-
     <!--Hi-->
     <view class="main-card-item" id="ykt" wx:if='{{jsonStr.teachWeek != "N/A"}}'>
-      <navigator url='/pages/calendar/calendar'>
+      <navigator url="/pages/calendar/calendar">
         <view class="card-item-hd">
           <view class="card-item-icon">
             <open-data type="userAvatarUrl"></open-data>
@@ -99,8 +101,8 @@
     </view>
 
     <!-- Hi！寒暑假 -->
-    <view class="main-card-item" id='vocation' wx:else>
-      <navigator url='/pages/calendar/calendar'>
+    <view class="main-card-item" id="vocation" wx:else>
+      <navigator url="/pages/calendar/calendar">
         <view class="card-item-hd">
           <view class="card-item-icon">
             <open-data type="userAvatarUrl"></open-data>
@@ -121,7 +123,7 @@
 
     <!--距开学倒计时 "-->
     <view class="main-card-item" id="kaixue" wx:if="{{jsonStr.gap2StartClass <= 30 && jsonStr.gap2StartClass >0}}">
-      <navigator url='/pages/calendar/calendar'>
+      <navigator url="/pages/calendar/calendar">
         <view class="card-item-hd">
           <text class="card-item-icon">💀</text>
           <text class="card-item-name">讲个鬼故事</text>
@@ -135,7 +137,7 @@
                 </view>
                 <view class="jy-timing examWeek-Margin">
                   <text class="jy-timing-text">已不足</text>
-                  <text class="ykt-balance-value" style='color:#000'>{{jsonStr.gap2StartClass}}</text>
+                  <text class="ykt-balance-value" style="color:#000">{{jsonStr.gap2StartClass}}</text>
                   <text class="jy-timing-text">天</text>
                 </view>
               </view>
@@ -162,10 +164,10 @@
           </view>
         </view>
       </navigator>
-      <view class="kb-open" bindtap='isShowAllCourse' wx:if="{{!isShowAllCourse}}">
+      <view class="kb-open" bindtap="isShowAllCourse" wx:if="{{!isShowAllCourse}}">
         <text>展示全天课表👇</text>
       </view>
-      <view class="kb-open" bindtap='isShowAllCourse' wx:else>
+      <view class="kb-open" bindtap="isShowAllCourse" wx:else>
         <text>朕知道了，赶紧收起来吧😂</text>
       </view>
     </view>
@@ -185,10 +187,10 @@
           </view>
         </view>
       </navigator>
-      <view class="kb-open" bindtap='isShowAllCourse' wx:if="{{!isShowAllCourse}}">
+      <view class="kb-open" bindtap="isShowAllCourse" wx:if="{{!isShowAllCourse}}">
         <text>展示全天课表👇</text>
       </view>
-      <view class="kb-open" bindtap='isShowAllCourse' wx:else>
+      <view class="kb-open" bindtap="isShowAllCourse" wx:else>
         <text>朕知道了，赶紧收起来吧😂</text>
       </view>
     </view>
@@ -208,19 +210,18 @@
           </view>
         </view>
       </navigator>
-      <view class="kb-open" bindtap='isShowAllCourse' wx:if="{{!isShowAllCourse}}">
+      <view class="kb-open" bindtap="isShowAllCourse" wx:if="{{!isShowAllCourse}}">
         <text>展示全天课表👇</text>
       </view>
-      <view class="kb-open" bindtap='isShowAllCourse' wx:else>
+      <view class="kb-open" bindtap="isShowAllCourse" wx:else>
         <text>朕知道了，赶紧收起来吧😂</text>
       </view>
     </view>
 
-
     <!-- 今天全天课程 -->
     <view wx:if="{{isShowAllCourse}}">
       <!--今日全天没课?-->
-      <view class="main-card-item" id='mk' wx:if='{{offlinePeronalClass == ""}}'>
+      <view class="main-card-item" id="mk" wx:if='{{offlinePeronalClass == ""}}'>
         <view class="card-item-hd">
           <text class="card-item-icon">😎</text>
           <text class="card-item-name">今日（{{jsonStr['month']}}月{{jsonStr['day']}}日 {{jsonStr['dayOfWeek']}}）</text>
@@ -235,7 +236,7 @@
         </view>
       </view>
       <!--没有缓存-->
-      <view class="main-card-item" id='mk' wx:if='{{offlinePeronalClass == "null"}}'>
+      <view class="main-card-item" id="mk" wx:if='{{offlinePeronalClass == "null"}}'>
         <navigator url="/pages/classQuery/index">
           <view class="card-item-hd">
             <text class="card-item-icon">😭</text>
@@ -274,28 +275,6 @@
       </view>
     </view>
 
-    <!-- 缓存课表 -->
-    <!-- <view class="main-card-item" id="kb" wx:if="{{jsonStr.todayCourse.getCourseStatus == 500}}">
-      <navigator url="/pages/classQuery/index">
-        <view class="card-item-hd">
-          <text class="card-item-icon">😡</text>
-          <text class="card-item-name">缓存（ {{jsonStr['dayOfWeek']}}）课表</text>
-        </view>
-        <view class="card-item-bd">
-          <view class="kb-item" wx:for="{{offlinePeronalClass}}" wx:key="todayCourseOffline" wx:if="{{item.courseName != ''}}">
-            <view class="kb-item-left">
-              <text class="kb-item-what">{{item.courseName}}{{item.teachWeek}}</text>
-              <text class="kb-item-when">{{item.startTime}}上课 - {{item.endTime}}下课</text>
-            </view>
-            <text class="kb-item-where">{{item.place}}</text>
-          </view>
-        </view>
-        <view class="kb-open">
-          <text>查看完整个人课表</text>
-        </view>
-      </navigator>
-    </view> -->
-
     <!-- 广告 -->
     <view class="main-card-item" wx:if="{{!adsError}}">
       <view class="card-item-hd">
@@ -306,8 +285,8 @@
         <view class="book-intro raduis">
           <view class="remind-box">
             <!-- 广告位 -->
-            <view style='width:100%;'>
-              <ad unit-id="adunit-62f52651dd5f4ff6" binderror="adsError"></ad>
+            <view style="width:100%;">
+              <ad unit-id="297c24fcd434022129795daed3f46440"></ad>
             </view>
             <!-- 广告位结束 -->
           </view>
@@ -317,7 +296,7 @@
 
     <!--节假日信息-->
     <view class="main-card-item" id="fj" wx:for='{{jsonStr["nextHoliday"]}}' wx:key="jiejiari" wx:if="{{item.gapDays <= 15 && item.gapDays >= 0}}">
-      <navigator url='/pages/calendar/calendar'>
+      <navigator url="/pages/calendar/calendar">
         <view class="card-item-hd">
           <image class="card-item-icon" src="/images/holiday.png"></image>
           <text class="card-item-name">{{item.holidayName}}</text>
@@ -352,7 +331,7 @@
 
     <!--距考试周倒计时 -->
     <view class="main-card-item" id="ks" wx:if="{{jsonStr.gap2ExamWeek <= 30 && jsonStr.gap2ExamWeek > 0}}">
-      <navigator url='/pages/calendar/calendar'>
+      <navigator url="/pages/calendar/calendar">
         <view class="card-item-hd">
           <text class="card-item-icon">🖊</text>
           <text class="card-item-name">考试</text>
@@ -376,7 +355,7 @@
 
     <!--网费-->
     <view class="main-card-item" id="swf" wx:if="{{jsonStr.netInfo.code == '200'}}">
-      <navigator url='/pages/net/netBind'>
+      <navigator url="/pages/net/netBind">
         <view class="card-item-hd">
           <text>🌐</text>
           <text class="card-item-name">网费余额</text>
@@ -400,8 +379,8 @@
         </view>
       </navigator>
     </view>
-    <view class="main-card-item" style='height:400rpx;' wx:elif="{{jsonStr.netInfo.code == '500'}}">
-      <navigator url='/pages/net/netBind'>
+    <view class="main-card-item" style="height:400rpx;" wx:elif="{{jsonStr.netInfo.code == '500'}}">
+      <navigator url="/pages/net/netBind">
         <view class="card-item-hd">
           <text>🌐</text>
           <text class="card-item-name">网费余额</text>
@@ -414,8 +393,8 @@
         </view>
       </navigator>
     </view>
-    <view class="main-card-item" style='height:400rpx;' wx:else>
-      <navigator url='/pages/net/netBind'>
+    <view class="main-card-item" style="height:400rpx;" wx:else>
+      <navigator url="/pages/net/netBind">
         <view class="card-item-hd">
           <text>🌐</text>
           <text class="card-item-name">网费余额</text>
@@ -424,7 +403,7 @@
           <view class="remind-box">
             <image class="remind-img" src="/images/nothing.png"></image>
             <text class="remind-text">绑定一下校园网账号嘛(ಥ _ ಥ)</text>
-            <navigator url='/pages/net/netBind' class="remind-btn">绑定校园网</navigator>
+            <navigator url="/pages/net/netBind" class="remind-btn">绑定校园网</navigator>
           </view>
         </view>
       </navigator>
@@ -432,7 +411,7 @@
 
     <!--电费-->
     <view class="main-card-item" id="sdf" wx:if="{{jsonStr.eleInfo.status == 200 }}">
-      <navigator url='/pages/electricity/electricityBind'>
+      <navigator url="/pages/electricity/electricityBind">
         <view class="card-item-hd">
           <text>⚡</text>
           <text class="card-item-name">宿舍用电</text>
@@ -456,8 +435,8 @@
         </view>
       </navigator>
     </view>
-    <view class="main-card-item" style='height:400rpx;' wx:elif="{{jsonStr.eleInfo.status == 401}}">
-      <navigator url='/pages/electricity/electricityBind'>
+    <view class="main-card-item" style="height:400rpx;" wx:elif="{{jsonStr.eleInfo.status == 401}}">
+      <navigator url="/pages/electricity/electricityBind">
         <view class="card-item-hd">
           <text>⚡</text>
           <text class="card-item-name">宿舍用电</text>
@@ -466,13 +445,13 @@
           <view class="remind-box">
             <image class="remind-img" src="/images/nothing.png"></image>
             <text class="remind-text">建议您绑定一下宿舍</text>
-            <navigator url='/pages/electricity/electricityBind' class="remind-btn">绑定宿舍</navigator>
+            <navigator url="/pages/electricity/electricityBind" class="remind-btn">绑定宿舍</navigator>
           </view>
         </view>
       </navigator>
     </view>
-    <view class="main-card-item" style='height:400rpx;' wx:else>
-      <navigator url='/pages/electricity/electricityBind'>
+    <view class="main-card-item" style="height:400rpx;" wx:else>
+      <navigator url="/pages/electricity/electricityBind">
         <view class="card-item-hd">
           <text>⚡</text>
           <text class="card-item-name">宿舍用电</text>
@@ -485,6 +464,5 @@
         </view>
       </navigator>
     </view>
-
   </view>
 </view>
