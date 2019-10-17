@@ -7,12 +7,11 @@
       <image class="remind-img" src="/images/nothing.png"></image>
       <text class="remind-text">{{ErrorTips}}</text>
     </view>
-    <button bindtap='goBack' class="login-btn">
+    <button bindtap="goBack" class="login-btn">
       <text>返回</text>
     </button>
-    <button open-type='contact' class="login-btn">
-      <text>联系客服</text>
-    </button>
+
+    <button open-type="openGroupProfile" group-id="719700279" class="login-btn" type="primary">联系客服</button>
   </view>
 
   <view class="weui-footer  weui-footer_fixed-bottom">

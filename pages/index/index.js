@@ -6,23 +6,26 @@ Page({
     jsonContent: {},
     jsonStr: "",
     help_status: false,
+    reset_status: false,
     userid_focus: false,
     passwd_focus: false,
     vcode_focus: false,
+    resetUid_focus: false,
+    idCardNO_focus: false,
     angle: 0,
     PreInfo: {},
     isLoading: true,
   },
-  onLoad: function() {
+  onLoad: function () {
     var that = this;
     var uid = app.globalData.uid;
     var pwd = app.globalData.newpwd;
     this.getVcode();
-    if (this.checkHasLogin()) {} else {
+    if (this.checkHasLogin()) { } else {
       this.onReady();
     }
   },
-  checkHasLogin: function() {
+  checkHasLogin: function () {
     var uid = wx.getStorageSync('uid');
     var pwd = wx.getStorageSync('newpwd');
     if (uid != '' && pwd != '') {
@@ -32,7 +35,7 @@ Page({
     }
 
   },
-  submitInfo: function(e) {
+  submitInfo: function (e) {
     wx.showToast({
       title: "登录中...",
       icon: "loading",
@@ -62,7 +65,7 @@ Page({
           cookie: that.data.PreInfo.cookie,
           vcode: vcode
         },
-        success: function(res) {
+        success: function (res) {
           that.setData({
             jsonStr: res.data,
           })
@@ -104,22 +107,22 @@ Page({
       })
     }
   },
-  tapHelp: function(e) {
+  tapHelp: function (e) {
     if (e.target.id == 'help') {
       this.hideHelp();
     }
   },
-  showHelp: function(e) {
+  showHelp: function (e) {
     this.setData({
       'help_status': true
     });
   },
-  hideHelp: function(e) {
+  hideHelp: function (e) {
     this.setData({
       'help_status': false
     });
   },
-  inputFocus: function(e) {
+  inputFocus: function (e) {
     if (e.target.id == 'userid') {
       this.setData({
         'userid_focus': true
@@ -132,9 +135,17 @@ Page({
       this.setData({
         'vcode_focus': true
       });
+    } else if (e.target.id == 'resetUid') {
+      this.setData({
+        'resetUid_focus': true
+      });
+    } else if (e.target.id == 'idCardNO') {
+      this.setData({
+        'idCardNO_focus': true
+      });
     }
   },
-  inputBlur: function(e) {
+  inputBlur: function (e) {
     if (e.target.id == 'userid') {
       this.setData({
         'userid_focus': false
@@ -147,16 +158,24 @@ Page({
       this.setData({
         'vcode_focus': false
       });
+    } else if (e.target.id == 'resetUid') {
+      this.setData({
+        'resetUid_focus': false
+      });
+    } else if (e.target.id == 'idCardNO') {
+      this.setData({
+        'idCardNO_focus': false
+      });
     }
   },
-  onReady: function() {
+  onReady: function () {
     var that = this;
-    setTimeout(function() {
+    setTimeout(function () {
       that.setData({
         isLoading: false
       });
     }, 1000);
-    wx.onAccelerometerChange(function(res) {
+    wx.onAccelerometerChange(function (res) {
       var angle = -(res.x * 30).toFixed(1);
       if (angle > 14) {
         angle = 14;
@@ -170,11 +189,11 @@ Page({
       }
     });
   },
-  getVcode: function() {
+  getVcode: function () {
     var that = this;
     wx.request({
       url: app.globalData.apiURL + '/v2/getCookie.php',
-      success: function(res) {
+      success: function (res) {
         console.log(res.data);
         that.setData({
           PreInfo: res.data,
@@ -188,5 +207,58 @@ Page({
         }
       }
     });
+  },
+  resetPassword: function () {
+    this.setData({
+      help_status: false,
+      reset_status: true,
+    })
+  },
+  hideReset: function () {
+    this.setData({
+      help_status: false,
+      reset_status: false,
+    })
+  },
+  resetPasswordForm: function (e) {
+    var that = this;
+    if (e.detail.value.resetUid.length < 8 || e.detail.value.idCardNO.length < 15) {
+      wx.showToast({
+        title: '输入有误',
+        icon: 'none',
+        image: '/images/info.png'
+      })
+    } else {
+      wx.request({
+        url: app.globalData.apiURL + '/v4/reset.php',
+        method: "POST",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        data: {
+          username: e.detail.value.resetUid,
+          idcard: e.detail.value.idCardNO
+        },
+        success: function (res) {
+          // console.log(res.data);
+          if (res.data.code == '200' && res.data.desc == '密码已重置为身份证号的后六位') {
+            wx.showToast({
+              icon: 'none',
+              title: '密码已重置为身份证号的后六位',
+              duration: 5000,
+            })
+            that.setData({
+              reset_status: false,
+            })
+          } else {
+            wx.showToast({
+              image: '/images/info.png',
+              title: res.data.desc,
+              duration: 5000
+            })
+          }
+        }
+      })
+    }
   }
 })

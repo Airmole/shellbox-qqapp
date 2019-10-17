@@ -45,6 +45,10 @@
       </view>
     </view>
 
+    <view class="button-sp-area">
+      <button open-type="openGroupProfile" group-id="719700279" class="weui-btn" type="primary">联系客服</button>
+    </view>
+
     <view class="footer">
       <view class="footer-beingshawn">
         <text>Airmole.</text>

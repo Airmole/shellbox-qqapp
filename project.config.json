@@ -39,11 +39,14 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": []
 		}
 	}

@@ -55,8 +55,11 @@
       "desc": "你的位置信息将用于校园导航定位"
     }
   },
-   "navigateToMiniProgramAppIdList": [
+  "navigateToMiniProgramAppIdList": [
     "1109955074"
+  ],
+  "groupIdList": [
+    "719700279"
   ],
   "sitemapLocation": "sitemap33.json"
 }
