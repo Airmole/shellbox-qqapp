@@ -20,6 +20,7 @@
       <text class="desc-content" style="text-indent:2em;"
         >贝壳小盒子目前还处于公测阶段，有一系列新的功能正在我们的开发计划中。“你想要的，都在这里！”。（受QQ小程序支持程度影响，部分功能不可用或体验较差，欢迎大家测试反馈给开发学长）</text
       >
+      <image bindtap="showAppCode" class="weui-article__img" src="https://z4a.net/images/2019/10/16/777b9dd8ed1f6f82e24795fbab8ddb1c.png" mode="widthFix" style="width:100%;border-radius:25rpx;" />
       <text class="desc-title">数据来源</text>
       <text class="desc-content">* 课表、成绩等数据来自教务处官网；\r\n* 图书相关信息来自图书馆官网以及豆瓣；\r\n* 校历、各系部联系电话来自于学院官方网站；\r\n* 用电数据、网费信息来自智慧校园</text>
       <text class="desc-title">开发贡献</text>
@@ -33,6 +34,15 @@
       </view>
 
       <text bindtap="copyID" id="AirmoleQQ">联系开发学长：QQ745362916</text>
+      <text class="desc-title">其他小程序</text>
+      <view>
+        <view bindtap="goOtherApps" class="oneApp" wx:for="{{otherApps}}" wx:key="appsV" data-appid="{{item.appid}}">
+          <view class="userinfo-avatar">
+            <image src="{{item.icon}}" style="width:110rpx;height:110rpx;"></image>
+          </view>
+          <view class="coperatorName">{{item.name}}</view>
+        </view>
+      </view>
     </view>
 
     <view class="footer">
