@@ -44,12 +44,12 @@ Page({
     } else {
       sawBirthTips = true;
     }
-    var nowTimestamp = new Date().getTime();
-    if ((nowTimestamp < '1571932799000' && nowTimestamp > '1571865600000') && sawBirthTips) {
-      this.setData({
-        isRuleTrue: true,
-      })
-    }
+    // var nowTimestamp = new Date().getTime();
+    // if ((nowTimestamp < '1571932799000' && nowTimestamp > '1571865600000') && sawBirthTips) {
+    //   this.setData({
+    //     isRuleTrue: true,
+    //   })
+    // }
   },
   onReady: function () {
 

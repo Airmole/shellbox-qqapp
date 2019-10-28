@@ -41,15 +41,6 @@
     </view>
   </view>
 
-  <!-- 生日 -->
-  <view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}">
-    <view class="ruleZhezhaoContent">
-      <view class="ruleZhezhaoText">
-        <image src="https://z4a.net/images/2019/10/16/72797c15ac21d438cec3e8167036e4cd.jpg" style="width:360px;height:550px;"></image>
-      </view>
-      <image src="/images/close.png" class="ruleHide" bindtap="hideRule"></image>
-    </view>
-  </view>
 
   <!-- loading -->
   <view wx:if="{{isLoading == '加载中'}}" class="remind-box" style="margin-top:-200px;">
