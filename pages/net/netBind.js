@@ -1,6 +1,7 @@
 // pages/net/netBind.js
 //获取应用实例
 var app = getApp();
+var base64 = require('../../utils/base64.min.js');
 Page({
   data: {
     uid: "",
@@ -13,7 +14,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.showToast({
       title: "loading",
       icon: "loading",
@@ -25,7 +26,7 @@ Page({
     if (uid != "" && netPassword != '') {
       app.globalData.netPassword = netPassword;
       wx.redirectTo({
-        url: './netfare?uid=' + uid + '&netPassword=' + netPassword,
+        url: './netfare?uid=' + uid + '&netPassword=' + base64.encode(netPassword),
       })
       wx.hideToast();
     } else {
@@ -36,7 +37,7 @@ Page({
       wx.hideToast();
     }
   },
-  NetQuery: function(e) {
+  NetQuery: function (e) {
     var that = this;
     console.log(that.data.uid);
     console.log(e.detail.value.netPassword)
@@ -58,7 +59,7 @@ Page({
           username: that.data.uid,
           netPassword: e.detail.value.netPassword
         },
-        success: function(res) {
+        success: function (res) {
           that.setData({
             netJson: res.data,
           })
@@ -72,9 +73,9 @@ Page({
             });
           } else if (res.data.code == "200") {
             //设置本地Storage,维持登录态用
-            wx.setStorageSync('netPassword', e.detail.value.netPassword);
+            wx.setStorageSync('netPassword', base64.encode(e.detail.value.netPassword));
             wx.redirectTo({
-              url: './netfare?uid=' + that.data.uid + '&netPassword=' + e.detail.value.netPassword
+              url: './netfare?uid=' + that.data.uid + '&netPassword=' + base64.encode(e.detail.value.netPassword)
             })
           } else {
             wx.showToast({
@@ -87,29 +88,29 @@ Page({
       })
     }
   },
-  tapHelp: function(e) {
+  tapHelp: function (e) {
     if (e.target.id == 'help') {
       this.hideHelp();
     }
   },
-  showHelp: function(e) {
+  showHelp: function (e) {
     this.setData({
       'help_status': true
     });
   },
-  hideHelp: function(e) {
+  hideHelp: function (e) {
     this.setData({
       'help_status': false
     });
   },
-  inputFocus: function(e) {
+  inputFocus: function (e) {
     if (e.target.id == 'netPassword') {
       this.setData({
         'netPassword_focus': true
       });
     }
   },
-  inputBlur: function(e) {
+  inputBlur: function (e) {
     if (e.target.id == 'netPassword') {
       this.setData({
         'netPassword_focus': false
