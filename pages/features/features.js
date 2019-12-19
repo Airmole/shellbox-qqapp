@@ -35,6 +35,11 @@ Page({
         name: '校历',
         url: '/pages/calendar/calendar',
         needLogin: false
+      }, {
+        id: 'jyxx',
+        name: '我的借阅',
+        url: '/pages/opac/bind',
+        needLogin: false
       },
       {
         id: 'smcs',
@@ -59,14 +64,13 @@ Page({
         name: '校园出行',
         url: '/pages/Transport/Transport',
         needLogin: false
-      }, {
+      }],
+      [{
         id: 'tel',
         name: '常用电话',
         url: '/pages/tel/tel',
         needLogin: false
-      }
-      ],
-      [{
+      }, {
         id: 'gyhz',
         name: '关于盒子',
         url: '/pages/features/about',

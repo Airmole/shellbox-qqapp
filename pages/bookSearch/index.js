@@ -11,7 +11,7 @@ Page({
     isShowAllCourse: false,
     isLogined: false,
     keyword: "",
-    isRuleTrue: false,
+     shouldReturnBook:[],
     jsonStr: "",
     dayOfWeek: '',
     keywordStr: '',
@@ -38,18 +38,7 @@ Page({
 
     this.checkEffectiveIdAndPasswoed();
 
-    var sawBirthTips = wx.getStorageSync('zlxBirth');
-    if (sawBirthTips == 'saw') {
-      sawBirthTips = false;
-    } else {
-      sawBirthTips = true;
-    }
-    // var nowTimestamp = new Date().getTime();
-    // if ((nowTimestamp < '1571932799000' && nowTimestamp > '1571865600000') && sawBirthTips) {
-    //   this.setData({
-    //     isRuleTrue: true,
-    //   })
-    // }
+    this.showReadingBooks();
   },
   onReady: function () {
 
@@ -301,4 +290,23 @@ Page({
     })
     wx.setStorageSync('zlxBirth', 'saw');
   },
+  showReadingBooks: function() {
+    var that = this;
+    var readingBook = wx.getStorageSync('readingBook');
+    var nowTimestamp = new Date().getTime();
+    var bookReturnDate = new Date();
+    var shouldReturnBook = [];
+
+    for (let i in readingBook) {
+      let formatedNeedReturnDate = readingBook[i].needReturnDate;
+      var needReturnDateArr = formatedNeedReturnDate.split("-");
+      bookReturnDate.setFullYear(needReturnDateArr[0], needReturnDateArr[1] - 1, needReturnDateArr[2]);
+      if (nowTimestamp < bookReturnDate.getTime()) {
+        shouldReturnBook.push(readingBook[i]);
+      }
+    }
+    that.setData({
+      shouldReturnBook: shouldReturnBook
+    })
+  }
 });

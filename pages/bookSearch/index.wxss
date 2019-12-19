@@ -1,7 +1,6 @@
 /* pages/bookSearch/index.wxss */
 @import "../common/weui.wxss";
 
-
 .login-btn {
   margin-top: 20rpx;
   font-size: 9pt;
@@ -50,8 +49,8 @@
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom center;
-  /* background-image: url('/images/index/tri.png'); *//*微信暂不支持静态bgimg文件，改用服务器url*//* background-image: url('https://z4a.net/images/2019/02/01/tri.png'); */
-  background-image: url('https://z4a.net/images/2019/02/01/timmg.png');
+  /* background-image: url('/images/index/tri.png'); */ /*微信暂不支持静态bgimg文件，改用服务器url*/ /* background-image: url('https://z4a.net/images/2019/02/01/tri.png'); */
+  background-image: url("https://z4a.net/images/2019/02/01/timmg.png");
 }
 
 /**功能导航**/
@@ -128,62 +127,62 @@
 }
 
 .main-card-item#kb {
-  background-image: url('https://z4a.net/images/2019/02/01/kb-bg.png');
+  background-image: url("https://z4a.net/images/2019/02/01/kb-bg.png");
 }
 
 .main-card-item#nextCourse {
-  background-image: url('https://z4a.net/images/2019/02/01/kb-bg.png');
+  background-image: url("https://z4a.net/images/2019/02/01/kb-bg.png");
 }
 
 .main-card-item#jwClosed {
-  background-image: url('https://z4a.net/images/2019/02/03/profile-first-issue.png');
+  background-image: url("https://z4a.net/images/2019/02/03/profile-first-issue.png");
 }
 
 .main-card-item#ks {
-  background-image: url('https://z4a.net/images/2019/02/02/tools.png');
+  background-image: url("https://z4a.net/images/2019/02/02/tools.png");
 }
 
 .main-card-item#kaixue {
-  background-image: url('https://z4a.net/images/2019/02/03/f916aa746928d9b32ff09fe82c61f54c.png');
+  background-image: url("https://z4a.net/images/2019/02/03/f916aa746928d9b32ff09fe82c61f54c.png");
 }
 
 .main-card-item#vocation {
-  background-image: url('https://z4a.net/images/2019/02/03/profile-first-repo.png');
+  background-image: url("https://z4a.net/images/2019/02/03/profile-first-repo.png");
 }
 
 .main-card-item#ykt {
-  /*background-image: url('/images/index/ykt-bg.png');*//*微信暂不支持静态bgimg文件，改用服务器url*/
-  background-image: url('https://z4a.net/images/2019/03/10/ykt-bg.png');
+  /*background-image: url('/images/index/ykt-bg.png');*/ /*微信暂不支持静态bgimg文件，改用服务器url*/
+  background-image: url("https://z4a.net/images/2019/03/10/ykt-bg.png");
 }
 
 .main-card-item#chashu {
-  /*background-image: url('/images/index/ykt-bg.png');*//*微信暂不支持静态bgimg文件，改用服务器url*/
-  background-image: url('https://z4a.net/images/2019/02/02/books.png');
+  /*background-image: url('/images/index/ykt-bg.png');*/ /*微信暂不支持静态bgimg文件，改用服务器url*/
+  background-image: url("https://z4a.net/images/2019/02/02/books.png");
 }
 
 .main-card-item#jy {
-  /*background-image: url('/images/index/jy-bg.png');*//*微信暂不支持静态bgimg文件，改用服务器url*/
-  background-image: url('https://we.cqu.pt/app/images/index/ykt-bg.png');
+  /*background-image: url('/images/index/jy-bg.png');*/ /*微信暂不支持静态bgimg文件，改用服务器url*/
+  background-image: url("https://we.cqu.pt/app/images/index/ykt-bg.png");
 }
 
 .main-card-item#fj {
-  /*background-image: url('/images/index/jy-bg.png');*//*微信暂不支持静态bgimg文件，改用服务器url*/
-  background-image: url('https://we.cqu.pt/app/images/index/ykt-bg.png');
+  /*background-image: url('/images/index/jy-bg.png');*/ /*微信暂不支持静态bgimg文件，改用服务器url*/
+  background-image: url("https://we.cqu.pt/app/images/index/ykt-bg.png");
 }
 
 .main-card-item#mk {
-  /*background-image: url('/images/index/jy-bg.png');*//*微信暂不支持静态bgimg文件，改用服务器url*/
-  background-image: url('https://z4a.net/images/2019/02/02/profile-joined-github.png');
+  /*background-image: url('/images/index/jy-bg.png');*/ /*微信暂不支持静态bgimg文件，改用服务器url*/
+  background-image: url("https://z4a.net/images/2019/02/02/profile-joined-github.png");
 }
 
 .main-card-item#sdf {
-  /*background-image: url('/images/index/sdf-bg.png');*//*微信暂不支持静态bgimg文件，改用服务器url*/
-  background-image: url('https://i.loli.net/2019/06/22/5d0d1dc62946864090.png');
+  /*background-image: url('/images/index/sdf-bg.png');*/ /*微信暂不支持静态bgimg文件，改用服务器url*/
+  background-image: url("https://i.loli.net/2019/06/22/5d0d1dc62946864090.png");
 }
 
 .main-card-item#swf {
-  /*background-image: url('/images/index/sdf-bg.png');*//*微信暂不支持静态bgimg文件，改用服务器url*/
-  background-image: url('https://z4a.net/images/2019/07/29/netFareBk9b1a72dabcc8947f.png');
+  /*background-image: url('/images/index/sdf-bg.png');*/ /*微信暂不支持静态bgimg文件，改用服务器url*/
+  background-image: url("https://z4a.net/images/2019/07/29/netFareBk9b1a72dabcc8947f.png");
 }
 
 .main-card-item navigator {
@@ -465,7 +464,8 @@ page .navigator-hover {
   -webkit-box-orient: vertical;
 }
 
-.jy-timing, jy-return-time {
+.jy-timing,
+jy-return-time {
   line-height: 200%;
 }
 
@@ -646,3 +646,54 @@ page .navigator-hover {
 }
 
 /*  end  */
+
+.book-wraper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 35rpx 30rpx 10rpx;
+  background: #fff;
+  border-radius: 3px;
+}
+
+.book-name {
+  font-size: 15pt;
+  line-height: 135%;
+  word-break: break-all;
+}
+
+.bookeNameTxt {
+  float: left;
+  width: 240px;
+  white-space: nowrap; /*强制在一行显示*/
+  text-overflow: ellipsis; /*设置超出内容显示...*/
+  overflow: hidden; /*一定不能少 超出的内容进行隐藏*/
+}
+
+.historyBookeNameTxt {
+  float: left;
+  width: 100%;
+  white-space: nowrap; /*强制在一行显示*/
+  text-overflow: ellipsis; /*设置超出内容显示...*/
+  overflow: hidden; /*一定不能少 超出的内容进行隐藏*/
+}
+
+.book-date {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 9pt;
+  color: #888;
+}
+
+.book-img {
+  height: 13pt;
+  width: 13pt;
+  margin-top: 2pt;
+  margin-right: 10rpx;
+}
+.yhrq-value {
+  font-size: 13pt;
+}
