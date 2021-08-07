@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "default",
+  "navigationBarTitleText": "图书检索 - 贝壳小盒子",
+  "navigationBarBackgroundColor": "#8ECCA9",
+  "enablePullDownRefresh": false,
+  "usingComponents": {}
+}

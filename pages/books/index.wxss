@@ -1,0 +1,6 @@
+/* pages/books/index.wxss */
+@import "../school/cert.wxss";
+
+page {
+  background: var(--cyan);
+}

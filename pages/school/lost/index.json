@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#57B8B3",
+  "navigationBarTitleText": "失物招领",
+  "usingComponents": {
+    "tips": "../../index/component/tips",
+    "lostStatus": "./component/lostStatusCapsule"
+  }
+}

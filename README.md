@@ -1,163 +1,80 @@
 # ShellBox
 
-贝壳小盒子 QQ小程序(移植自微信小程序版，注释掉了QQ小程序不支持的组件和接口)
+贝壳小盒子 微信小程序
 
-若QQ小程序版本滞后于微信小程序，可以去把微信小程序的代码包直接拿过来用。注释删除掉QQ小程序上不支持的部分代码就行了。具体见下文。
+[![Star](https://img.shields.io/badge/Star-Airmole-brightgreen.svg)](https://github.com/Airmole/ShellBox/stargazers)
+[![Download](https://img.shields.io/badge/download-.zip-brightgreen.svg)](https://github.com/Airmole/ShellBox/archive/master.zip)
+[![last commit](https://img.shields.io/badge/last%20commit-2021--08--01-green.svg)](https://github.com/Airmole/ShellBox/commits/master)
+
 
 ## 线上版本体验
 
-[![wTSOvk9gnYzZjPC.png](https://i.loli.net/2019/10/14/wTSOvk9gnYzZjPC.png)](小程序体验码)
+[![miniprogram.th.jpg](https://upload-images.jianshu.io/upload_images/4697920-978a1204bd86e58c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](小程序体验码)
+
+
+## 截图
+[![-1.jpg](https://upload-images.jianshu.io/upload_images/4697920-dfebfcf8673fc144.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](https://z4a.net/image/7NtGdH)
+
+## 页面路径说明
 
 ```
-测试体验账号
-
-学号：000000000
-
-密码：test
+"pages": [
+    "pages/index/index",             // 首页
+    "pages/index/login",             // 登录
+    "pages/index/feature",           // 功能列表
+    "pages/books/search",            // 图书检索
+    "pages/books/index",             // 图书检索结果列表
+    "pages/books/detail",            // 图书信息详情 
+    "pages/books/shelf",             // 图书书架
+    "pages/books/bind",              // 图书OPAC借阅系统账号绑定
+    "pages/books/hot/index",         // 热门图书排行
+    "pages/books/overdue/index",     // 图书超期欠款
+    "pages/books/recommend/index",   // 图书荐购
+    "pages/books/my",                // 我的图书馆
+    "pages/books/portrait",          // 毕业生画像(成绩、借阅记录回忆统计)
+    "pages/course/my",               // 我的个人课表
+    "pages/course/search",           // 班级、教师课表搜索
+    "pages/course/content",          // 班级教师课表详情
+    "pages/course/stulist/index",    // 教师课堂学生花名册列表
+    "pages/course/stulist/content",  // 教师课堂学生花名册详情
+    "pages/elesys/bind",             // 电费查询寝室绑定
+    "pages/elesys/index",            // 电费信息展示
+    "pages/netsys/bind",             // 校园网账号绑定
+    "pages/netsys/index",            // 网费查询结果界面
+    "pages/netsys/list",             // 网费查询明细
+    "pages/traffic/navi",             // 校园导航
+    "pages/traffic/bus",              // 校园出行
+    "pages/score/score",             // 成绩查询
+    "pages/school/calendar",         // 校历
+    "pages/school/tel",              // 校园通讯录
+    "pages/school/cert",             // 考证助手
+    "pages/school/web",              // 校园站点
+    "pages/school/aboutus",          // 关于
+    "pages/school/xiaoai"            // 小爱课程表
+    "pages/school/board/index",      // 学生权益投诉列表
+    "pages/school/board/edit",       // 权益投诉内容编辑
+    "pages/school/board/detail",     // 权益投诉内容展示
+    "pages/school/lost/edit",        // 失物招领发表编辑
+    "pages/school/lost/index",       // 失物招领列表页面
+    "pages/school/lost/detail"       // 失物招领内容展示
+  ],
 ```
 
-## 微信小程序版
+## 参考借鉴
 
-[https://github.com/Airmole/ShellBox](https://github.com/Airmole/ShellBox)
+- 登录、关于、课表、电费查询界面借鉴参考使用[We重邮](https://github.com/mcc108/wecqupt)
 
+- 校园导航路线规划使用[高德导航API](https://lbs.amap.com/)
 
-## 移植微信小程序要注意
+- 成绩查询界面统计图表[wx-charts](https://github.com/xiaolin3303/wx-charts)
 
-大部分主题逻辑实现上与微信小程序可以直接使用，但是部分语法、小程序API、组件支持的差异要注意，需要注释或移除。目前已知的有以下几点：
-
-
-- app.js（获取用户微信openID）
+- [ColorUI](https://github.com/weilanwl/ColorUI)
 
 
-```
-//getUserOpenId: function (callback) {
-// 注释掉微信小程序的接口
-//   var self = this
-//   if (self.globalData.openid) {
-//     callback(null, self.globalData.openid)
-//   } else {
-//     wx.login({
-//       success: function(data) {
-//         wx.request({
-//           url: 'https://api.airmole.cn/code2id.php?',
-//           data: {
-//             code: data.code
-//           },
-//           success: function(res) {
-//             console.log('拉取openid成功', res.data.openid)
-//             self.globalData.openid = res.data.openid
-//           },
-//           fail: function(res) {
-//             console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-//           }
-//         })
-//       },
-//       fail: function(err) {
-//         console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
-//       }
-//     })
-//   }
-//  },
-```
+## 参赛获奖
 
--  app.json
+- 2019 高校微信小程序开发大赛 华北赛区二等奖 （2019年7月25日）
 
+## 其他版本
 
->sitemapLocation 微信小程序的页面收录描述文件。去不去掉都行。嫌碍眼就去掉。
-
-```
-//  "sitemapLocation": "sitemap33.json"
-```
-
-- 入口首页必须支持分享
-
-> QQ小程序的奇葩审核规定，入口首页不写支持分享的方法，审核不让你通过上线。最好支持分享的各个界面都适配下。把onShareAppMessage方法修改成如下：
-
-
-```
-onShareAppMessage: function(res) {
-    qq.showShareMenu({
-      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
-    });
-    //总之就是在分享的方法里面要有qq.showShareMenu这段代码。
-}
-```
-
-- 课表相关页面goClassPlace方法
-
->小程序不支持map组件，不能导航
-
-
-```
-goClassPlace: function(ep) {
-    //console.log(ep.target.dataset.place);
-    //var placeArr = ["1教学楼", "2教学楼", "3教学楼", "4教学楼", "5教学楼", "6教学楼", "7教学楼", "8教学楼", "9教学楼", "10教学楼", "11教学楼", "12教学楼", "理工馆", "社科馆"];
-    //var markerIdArr = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 5, 4];
-    //var result = placeArr.indexOf(ep.target.dataset.place.slice(0, -3));
-    // console.log(result);
-    //wx.navigateTo({
-    //  url: '/pages/schoolNav/schoolNav?markerId=' + markerIdArr[result],
-    //})
-    wx.showToast({
-    icon: 'none',
-    title: 'QQ小程序暂不支持导航',
-    })
-  },
-```
-
-- features/about.js页面的各种内容
-
-> 这个不属于功能性代码问题，主要是把微信的东西直接一点都不改不合适。
-
-
-- 去掉校园导航功能
-
->直接在功能列表去掉也好，保留入口图标但不开放进入也好。
-
--  pages/score/score.js
-
-> canvas绘制的成绩单图底部的微信小程序码换成QQ小程序码。canvas绘制完成后发送到说说发布页面。
-
-```
-eventGetImage(event) {
-    var that = this;
-    console.log(event)
-    wx.hideLoading()
-    const {
-      tempFilePath,
-      errMsg
-    } = event.detail
-    if (errMsg === 'canvasdrawer:ok') {
-      this.setData({
-        shareImage: tempFilePath
-      })
-      wx.previewImage({
-        urls: [tempFilePath],
-      })
-      that.eventSave();
-      qq.openQzonePublish({
-        text: '成绩单',
-        media: [
-          {
-            type: 'photo',
-            path: tempFilePath
-          }
-        ]
-      })
-    }
-  },
-```
-
-- 去掉所有的客服相关按钮、图标、提示
-
->QQ小程序还不支持客服消息。像是about页面、error页面、feature页面的联系客服都去掉。
-
-- QQ小程序回收键盘bug
-
- >例如登录界面、宿舍绑定界面的收回键盘会导致用户输入的内容消失掉。注释或删除掉回收键盘
-
-
-- 跳转到别的小程序
-
->QQ小程序和微信小程序的appID不同，需要更改两处。一处app.json和跳转页面的跳转方法传入的appid
-
+- [贝壳小盒子QQ小程序版](https://github.com/Airmole/ShellBox_QApp) (没精力同步维护了【懒】)

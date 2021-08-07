@@ -1,0 +1,37 @@
+<!--pages/index/feature.wxml-->
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <view class="userinfo-avatar shadow-blur">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="margin-top-sm nickname" wx:if="{{hasEdusysStorage}}">{{edusysUserInfo.uid}}</view>
+    <view class="margin-top-sm nickname" bindtap="goLogin" wx:else><open-data type="userNickName"></open-data>您尚未登录</view>
+    <image src="https://img02.sogoucdn.com/app/a/100520146/cbde6f5e83388a096d28fab7339d56fd" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+
+  <view class="cu-list grid col-5 no-border">
+    <view wx:if="{{(isTeacher&&item.teacher)||(!isTeacher&&item.student)}}" class="cu-item" wx:for="{{iconList}}"
+      wx:key="key" id="{{item.id}}" data-url="{{item.url}}" data-login="{{item.login}}" bindtap="goToPage">
+      <view>
+        <text class="iconfont icon-{{item.icon}}" style="color:#84BD54;font-size:32px;"></text>
+      </view>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="padding flex flex-direction">
+    <ad unit-id="297c24fcd434022129795daed3f46440"></ad>
+    <view class="flex">
+      <button open-type="share" class="flex-sub padding-sm margin-sm bg-green cu-btn margin-tb-sm lg round shadow">分享</button>
+      <button wx:if="{{hasEdusysStorage}}"
+        class="flex-sub padding-sm margin-sm bg-red cu-btn margin-tb-sm lg round shadow animation-{{animation=='shake'?'shake':''}}"
+        data-class="shake" bindtap="logout">注销</button>
+      <button wx:else class="flex-sub padding-sm margin-sm bg-green cu-btn margin-tb-sm lg round shadow"
+        bindtap="goLogin">登录</button>
+    </view>
+  </view>
+
+
+  
+
+</scroll-view>

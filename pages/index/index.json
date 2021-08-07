@@ -1,7 +1,9 @@
 {
-  "navigationBarBackgroundColor": "#7acfa6",
-  "backgroundColor": "#7acfa6",
-  "navigationBarTitleText": "绑定学号 - 贝壳小盒子",
-  "enablePullDownRefresh": false,
-  "disableScroll": true
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#8ECCA9",
+  "usingComponents": {
+    "tips": "./component/tips",
+    "feecard": "./component/feecard",
+    "imagemodal": "./component/imagemodal"
+  }
 }

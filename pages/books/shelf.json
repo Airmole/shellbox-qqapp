@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "default",
+  "navigationBarTitleText": "书架",
+  "navigationBarBackgroundColor": "#57B8B3",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tips": "../index/component/tips"
+  }
+}

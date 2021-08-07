@@ -1,4 +1,5 @@
 /* global Component wx */
+
 Component({
   properties: {
     painting: {
@@ -88,7 +89,7 @@ Component({
     },
     startPainting () {
       const { tempFileList, painting: { views } } = this.data
-      console.log(tempFileList);
+      console.log(tempFileList)
       for (let i = 0, imageIndex = 0; i < views.length; i++) {
         if (views[i].type === 'image') {
           this.drawImage({

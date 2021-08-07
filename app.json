@@ -1,51 +1,67 @@
 {
   "pages": [
-    "pages/bookSearch/index",
     "pages/index/index",
-    "pages/index/vcode",
-    "pages/bookSearch/isbn/iputIsbn",
-    "pages/bookSearch/bookInfo/bookDetail",
-    "pages/bookSearch/bookInfo/bookInfo",
-    "pages/bookSearch/bookInfo/bookList",
-    "pages/features/features",
-    "pages/features/about",
-    "pages/welcome/welcome",
-    "pages/classQuery/index",
-    "pages/classQuery/jskb",
-    "pages/classQuery/showJskb",
+    "pages/index/login",
+    "pages/index/feature",
+    "pages/books/search",
+    "pages/books/index",
+    "pages/books/detail",
+    "pages/books/shelf",
+    "pages/books/bind",
+    "pages/books/hot/index",
+    "pages/books/overdue/index",
+    "pages/books/recommend/index",
+    "pages/books/my",
+    "pages/books/portrait",
+    "pages/course/my",
+    "pages/course/search",
+    "pages/course/content",
+    "pages/course/stulist/index",
+    "pages/course/stulist/content",
+    "pages/elesys/bind",
+    "pages/elesys/index",
+    "pages/netsys/bind",
+    "pages/netsys/index",
+    "pages/netsys/list",
+    "pages/traffic/navi",
+    "pages/traffic/bus",
     "pages/score/score",
-    "pages/calendar/calendar",
-    "pages/error/queryerror",
-    "pages/net/netfare",
-    "pages/net/netBind",
-    "pages/electricity/electricityFare",
-    "pages/electricity/electricityBind",
-    "pages/Transport/Transport",
-    "pages/tel/tel",
-    "pages/schoolNav/schoolNav",
-    "pages/opac/index",
-    "pages/opac/bind"
+    "pages/school/calendar",
+    "pages/school/tel",
+    "pages/school/cert",
+    "pages/school/web",
+    "pages/school/aboutus",
+    "pages/school/todayschool",
+    "pages/school/fakeschool",
+    "pages/school/xiaoai",
+    "pages/school/lost/edit",
+    "pages/school/lost/index",
+    "pages/school/lost/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "贝壳小盒子",
-    "navigationBarTextStyle": "white",
-    "navigationBarBackgroundColor": "#7acfa6"
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
   },
   "tabBar": {
-    "selectedColor": "#4A6141",
+    "selectedColor": "#84BD54",
     "color": "#333",
     "backgroundColor": "#fff",
     "position": "bottom",
     "list": [
       {
-        "pagePath": "pages/bookSearch/index",
+        "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/index.png",
         "selectedIconPath": "images/index@active.png"
       },
       {
-        "pagePath": "pages/features/features",
+        "pagePath": "pages/index/feature",
         "text": "更多",
         "iconPath": "images/more.png",
         "selectedIconPath": "images/holiday.png"
@@ -57,11 +73,6 @@
       "desc": "你的位置信息将用于校园导航定位"
     }
   },
-  "navigateToMiniProgramAppIdList": [
-    "1109955074"
-  ],
-  "groupIdList": [
-    "719700279"
-  ],
-  "sitemapLocation": "sitemap33.json"
+  "navigateToMiniProgramAppIdList": ["1109845492"],
+  "groupIdList": ["719700279"]
 }

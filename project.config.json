@@ -1,29 +1,55 @@
 {
-	"projectid": "1109608669_%E8%B4%9D%E5%A3%B3%E5%B0%8F%E7%9B%92%E5%AD%90",
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": false,
-		"minified": true,
-		"newFeature": true,
-		"autoAudits": true,
-		"nodeModules": true,
-		"sourcemapDisabled": true,
-		"uglifyFileName": true,
-		"useAlphaLib": true,
-		"remoteDebugLogEnable": false
-	},
-	"compileType": "miniprogram",
-	"createTime": 1564200310410,
-	"accessTime": 1564200310410,
+	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": []
 	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": true,
+		"useApiHook": true,
+		"useApiHostProcess": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"enableEngineNative": false,
+		"useIsolateContext": true,
+		"userConfirmedBundleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true,
+		"showES6CompileOption": false,
+		"remoteDebugLogEnable": false,
+		"prefetch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.0",
+	"appid": "1109608669",
+	"projectname": "shellbox-qqapp",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"qqappid": "1109608669",
-	"projectname": "%E8%B4%9D%E5%A3%B3%E5%B0%8F%E7%9B%92%E5%AD%90",
 	"scripts": {
 		"beforeCompile": "",
 		"beforePreview": "",
@@ -31,23 +57,24 @@
 	},
 	"condition": {
 		"search": {
-			"current": -1,
 			"list": []
 		},
 		"conversation": {
-			"current": -1,
 			"list": []
 		},
 		"game": {
+			"currentL": -1,
 			"list": []
 		},
 		"plugin": {
-			"current": -1,
+			"list": []
+		},
+		"gamePlugin": {
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": []
+			"list": [],
+			"current": 0
 		}
 	}
 }

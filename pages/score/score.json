@@ -1,8 +1,10 @@
 {
-  "enablePullDownRefresh": true,
-  "backgroundColor": "#7acfa6",
-  "navigationBarTitleText": "成绩查询 - 贝壳盒子",
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#8ECCA9",
+  "navigationBarTitleText": "成绩 - 贝壳小盒子",
+  "enablePullDownRefresh": false,
   "usingComponents": {
+    "calendar-item": "../school/component/calendarItem",
     "canvasdrawer": "/utils/canvasdrawer/canvasdrawer"
   }
 }

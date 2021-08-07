@@ -1,93 +1,174 @@
-<view class="container">
-  <view class="remind-box" wx:if="{{isLoading}}">
-    <image class="remind-img" src="/images/loading.gif"></image>
+<!-- 图书检索 -->
+<view class="padding-lr-sm bg-white margin shadow radius padding-bottom" bindtap="goToBookSearchPage">
+  <view class="padding-top">
+    <text class="cuIcon-title text-green"></text>馆藏图书检索
   </view>
-  <block wx:else>
-    <view>
-      <image class="title" src="/images/title.png"></image>
-      <view class="content">
-        <view class="hd" style="transform:rotateZ({{angle}}deg);">
-          <image class="logo" src="/images/schoolLogo.png"></image>
-          <image class="wave" src="/images/wave.png" mode="aspectFill"></image>
-          <image class="wave wave-bg" src="/images/wave.png" mode="aspectFill"></image>
-        </view>
-        <view class="bd">
-          <form class="login-form" bindsubmit="submitInfo">
-            <view class="input-group {{userid_focus ? 'active' : ''}}">
-              <text class="input-label">学号</text>
-              <input name="uid" id="userid" type="number" cursor-spacing="30" placeholder="请输入你的学号" bindfocus="inputFocus" bindblur="inputBlur" />
-            </view>
-            <view class="input-group {{passwd_focus ? 'active' : ''}}">
-              <text class="input-label">密码</text>
-              <input name="pwd" id="passwd" password="true" cursor-spacing="30" placeholder="请输入你的新教务密码" bindfocus="inputFocus" bindblur="inputBlur" />
-            </view>
-            <view class="input-group {{vcode_focus ? 'active' : ''}}">
-              <text class="input-label">验证码</text>
-              <input id="vcode" name="vcode" type="text" cursor-spacing="30" placeholder="输入验证码" bindfocus="inputFocus" bindblur="inputBlur" />
-              <view class="weui-cell__ft">
-                <image class="weui-vcode-img" src="{{PreInfo.vcode}}" style="width: 90px;height:25px;"></image>
-              </view>
-            </view>
-            <view class="login-help">
-              <view bindtap="showHelp">
-                <text>帮助 | 重置密码</text>
-                <image class="login-help-img" src="/images/help.png"></image>
-              </view>
-            </view>
-            <view>
-              <button formType="submit" class="login-btn">确认绑定</button>
-            </view>
-          </form>
-        </view>
+  <view class="cu-bar bg-white search">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="输入要检索的图书关键词" confirm-type="search" bindinput="keywordInput"
+        bindconfirm="searchBook"></input>
+    </view>
+  </view>
+  <radio-group class="block">
+    <view class="grid col-5 text-center margin-top-sm align-center">
+      <view class="text-sm" wx:for="{{radioItems}}" wx:key="radio">
+        <radio value="{{item.value}}" checked="{{item.checked}}"></radio>{{item.name}}
+      </view>
+      <view><button class="cu-btn round bg-green shadow">搜索</button></view>
+    </view>
+  </radio-group>
+</view>
 
-        <view class="help" id="help" wx:if="{{help_status}}" bindtap="tapHelp">
-          <view class="box">
-            <view class="box-hd">
-              <text class="box-title">帮助</text>
-              <image class="box-close" src="/images/close.png" bindtap="hideHelp"></image>
-            </view>
-            <view class="box-bd">
-              <view class="help-q">1、学号和密码是什么？</view>
-              <view class="help-a">
-                <text>学号：学号就是你的教务学号。</text>
-                <text>密码：您设定的教务系统的登录密码。</text>
-              </view>
-              <view class="help-q">2、忘记密码？</view>
-              <view class="help-a">
-                <text bindtap="resetPassword" style="color:#8E54EC;">点击这里，重置教务系统密码。重置后密码为身份证号码后6位，请及时修改</text>
-              </view>
-              <view class="help-q">3、大一新生？暂时还没有学号😥</view>
-              <view class="help-a">
-                <text>请耐心等待教务部门注册学籍，办理学生证，然后你就有学号啦。(不要企图用高考考生号登录成功)</text>
-              </view>
-            </view>
-          </view>
-        </view>
+<!-- 教学周日期显示 -->
+<block wx:if="{{calendar != '' && calendar.teachWeek != 'N/A'}}">
+  <navigator url="../school/calendar" class="padding-lr-sm bg-white margin radius padding-bottom" wx:if="{{calendar.teachWeek > 0 && calendar.teachWeek <= 25}}">
+    <view class="padding-top"><text class="cuIcon-title text-green"></text>第 <text class="text-xxl text-wegreen">{{calendar.teachWeek}}</text> 周 {{calendar.dayOfWeek}}</view>
+    <view class="padding-top praise"><text class="text-black">{{praise}}</text></view>
+  </navigator>
+</block>
+<block wx:else>
+  <navigator url="../school/calendar" class="padding-lr-sm bg-white margin radius padding-bottom" wx:if="{{calendar != ''}}">
+    <view class="padding-top"><text class="cuIcon-titles text-green"></text>{{calendar.month}}月{{calendar.day}}日 {{calendar.dayOfWeek}}</view>
+    <text class="text-black">{{praise}}</text>
+  </navigator>
+</block>
 
-        <view class="help" id="help" wx:if="{{reset_status}}" bindtap="tapHelp">
-          <view class="box">
-            <view class="box-hd">
-              <text class="box-title">修改密码</text>
-              <image class="box-close" src="/images/close.png" bindtap="hideReset"></image>
-            </view>
-            <view class="box-bd">
-              <form class="login-form" bindsubmit="resetPasswordForm">
-                <view class="input-group  {{resetUid_focus ? 'active' : ''}}">
-                  <text class="input-label">学号</text>
-                  <input name="resetUid" id="resetUid" type="number" cursor-spacing="30" placeholder="请输入你的学号" bindfocus="inputFocus" bindblur="inputBlur" />
-                </view>
-                <view class="input-group  {{idCardNO_focus ? 'active' : ''}}">
-                  <text class="input-label">身份证</text>
-                  <input name="idCardNO" id="idCardNO" type="text" cursor-spacing="30" placeholder="身份证号,有X大写" bindfocus="inputFocus" bindblur="inputBlur" />
-                </view>
-                <view>
-                  <button formType="submit" class="login-btn">重置密码</button>
-                </view>
-              </form>
-            </view>
+<view class="remind-box" wx:if="{{isLoading}}">
+  <image class="remind-img" src="/images/loading.gif"></image>
+</view>
+<view wx:else>
+
+  <block wx:if="{{hasLogin}}">
+
+    <!-- 下节课卡片 -->
+    <block wx:if="{{nextCourseArray.courseName}}">
+      <view class="cu-list menu sm-border card-menu margin">
+        <view class="cu-bar bg-white solid-bottom">
+          <view class="action"><text class="cuIcon-title text-green"></text>下节课</view>
+          <view class="action padding-right"><text class="cuIcon-creative line-wegreen"></text></view>
+        </view>
+        <navigator url="../course/my" class="cu-item">
+          <view class="content padding-tb-sm text-cut">
+            <view class="text-black text-cut">{{nextCourseArray.courseName}}</view>
+            <view class="text-gray text-sm">{{nextCourseArray.teachWeek}} <text class="text-green">{{nextCourseArray.startTime}}</text>上课 ~ {{nextCourseArray.endTime}}下课</view>
           </view>
+          <view class="action padding-right">
+            <text class="text-xl text-black">{{nextCourseArray.place}}</text>
+          </view>
+        </navigator>
+        <view class="padding bg-white text-center" bindtap="showTodayCourseCard" wx:if="{{!todayCourseCard}}">
+          <text class="text-center">展示全天课表👇</text>
+        </view>
+        <view class="padding bg-white text-center" bindtap="hideTodayCourseCard" wx:else>
+          <text class="text-center">朕知道了，赶紧收起来吧😂</text>
         </view>
       </view>
+    </block>
+
+    <!-- 今日全天课程卡片 -->
+    <block wx:if="{{todayCourseCard}}">
+      <view class="cu-list menu sm-border card-menu margin">
+        <navigator url="../course/my" class="cu-bar bg-white solid-bottom">
+          <view class="action">
+            <text class="cuIcon-title text-green"></text>今日课程
+          </view>
+          <view class="action padding-right">
+            <text class="cuIcon-activity line-wegreen"></text>
+          </view>
+        </navigator>
+        <navigator url="../course/my" class="cu-item" wx:for="{{todayCourses}}" wx:if="{{item.courseName!=''}}" wx:key="todayCourseKey">
+          <view class="content padding-tb-sm text-cut">
+            <view class="text-black text-cut">{{item.courseName}}</view>
+            <view class="text-gray text-sm">{{item.teachWeek}} {{item.startTime}}上课 ~ {{item.endTime}}下课</view>
+          </view>
+          <view class="action padding-right">
+            <text class="text-xl text-black">{{item.place}}</text>
+          </view>
+        </navigator>
+      </view>
+    </block>
+
+    <!-- 教师课堂花名册 -->
+    <block wx:if="{{isTeacher}}">
+      <view class="cu-list menu sm-border card-menu margin-top">
+        <view class="cu-bar bg-white solid-bottom">
+          <view class="action">
+            <text class="cuIcon-title text-green"></text> 课堂花名册
+          </view>
+          <view class="action padding-right">
+            <text class="cuIcon-friend line-wegreen"></text>
+          </view>
+        </view>
+        <navigator url="../course/stulist/content?course={{item.courseName}}&code={{item.queryCode}}" 
+          class="cu-item arrow" wx:for="{{edusysUserInfo.allCourses}}" wx:key="courseKey">
+          <view class="content padding-tb-sm">
+            <view><text class="cuIcon-skin text-orange"></text>{{item.courseName}}</view>
+            <view class="text-gray text-sm"> <text class="cuIcon-friend"></text> {{item.className}}</view>
+          </view>
+        </navigator>
+      </view>
+    </block>
+
+    <!-- 登录了，但没查过课表没缓存 -->
+    <block wx:if="{{!hasCourseCache}}">
+      <navigator url="../course/my" class="bg-white margin radius padding-xs">
+        <view class="cu-bar bg-white solid-bottom">
+          <view class="action">
+            <text class="cuIcon-title text-green"></text>课表
+          </view>
+          <view class="action padding-right"><text class="cuIcon-activity line-wegreen"></text></view>
+        </view>
+        <tips tipsText="您刚登陆吧？来查一次课表吧"></tips>
+        <view class="margin-tb-sm text-center">
+          <view class="cu-btn round bg-green shadow">查询课表</view>
+        </view>
+      </navigator>
+    </block>
+
+    <!-- 电费信息 -->
+    <feecard
+      isShow="{{!(hasBindElesys && !elesysData)}}"
+      title="寝室电费"
+      titleRight="⚡️"
+      bindedUrl="../elesys/index?building={{elesysData.building}}&room={{elesysData.room}}"
+      bindedShow="{{elesysData.balance.length > 0}}"
+      bindedAccount="{{elesysData.building}}斋{{elesysData.room}}"
+      timeText="截止:{{elesysData.time}}"
+      contentTextLeft="剩余电量"
+      contentValue="{{elesysData.balance}}"
+      contentTextRight="度"
+      unbindUrl="../elesys/bind"
+      unbindShow="{{!hasBindElesys}}"
+      unbindTips="绑定关联寝室电费信息"
+      unbindButton="绑定寝室"
+    ></feecard>
+
+     <!-- 网费信息 -->
+     <feecard
+      isShow="{{!(hasBindNetsys && !netsysData)}}"
+      title="校园网费用"
+      titleRight="🌐"
+      bindedUrl="../netsys/index"
+      bindedShow="{{netsysData.welcome.length > 0}}"
+      bindedAccount="{{netsysData.netid}}"
+      timeText=""
+      contentTextLeft="网费余额"
+      contentValue="{{netsysData.leftMoney}}"
+      contentTextRight="元"
+      unbindUrl="../netsys/bind"
+      unbindShow="{{!hasBindNetsys}}"
+      unbindTips="绑定关联校园网账号"
+      unbindButton="绑定校园网"
+    ></feecard>
+
+  </block>
+  <!-- 未登录绑定 -->
+  <block wx:else>
+    <tips tipsText="您咋还没绑定账号呢？"></tips>
+    <view class="margin-tb-sm text-center">
+      <button class="cu-btn round bg-green shadow" bindtap="goLogin">绑定登录</button>
     </view>
   </block>
+
 </view>

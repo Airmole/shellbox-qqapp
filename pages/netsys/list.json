@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#5F7CC74",
+  "navigationBarTitleText": "网费查询",
+  "usingComponents": {
+    "tips": "../index/component/tips"
+  }
+}

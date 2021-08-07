@@ -1,19 +1,18 @@
-// pages/score/showScore/showScore.js
+// pages/score/score.js
 var wxCharts = require('../../utils/wxcharts.js');
-var util = require('../../utils/time.js');
 var app = getApp();
 var lineChart = null;
+let interstitialAd = null;  // 插屏广告初始化
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    stuId: "",
     password: "",
     jsonContent: '',
     PicURL: "",
-    PicArr: [""],
-    hasUserInfo: false,
+    PicArr: [],
+    screenHeight: '900',
     isLoading: true,
     showGraphic: true,
     painting: {},
@@ -22,117 +21,53 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-    var that = this;
-    console.log(options);
-
-    var uid = wx.getStorageSync('uid');
-    var pwd = wx.getStorageSync('newpwd');
-    var cookie = options.cookie;
-    var vcode = options.vcode;
-    var scoreCache = wx.getStorageSync('p19Score');
-    let showCache = true;
-    if (options.update == '1') {
-      showCache = false;
-      that.GetScoreData(uid, pwd, cookie, vcode);
+  onLoad: function(options) {
+    // console.log(options);
+    this.loadAds();
+    this.inital();
+    this.getScoreData();
+  },
+  inital: function () {
+    const device = wx.getSystemInfoSync();
+    // console.log(device.screenHeight);
+    const scoreCache = wx.getStorageSync('myScore');
+    let hasScoreCache = Object.keys(scoreCache).length > 0 ? true : false;
+    this.setData({
+      screenHeight: device.screenHeight,
+      jsonContent: hasScoreCache ? scoreCache : '',
+      isLoading: hasScoreCache ? false : true
+    });
+    if(hasScoreCache){
+      this.charts();
     }
-
-    if (scoreCache != "" && showCache) {
-      that.setData({
-        stuId: uid,
-        password: pwd,
-        jsonContent: scoreCache,
-        isLoading: false
-      })
-      that.charts();
-    } else if ((uid == '' || pwd == '') || (vcode == '' || cookie == '')) {
-      wx.navigateTo({
-        url: '/pages/index/index'
-      })
-    } else {
-      that.GetScoreData(uid, pwd, cookie, vcode);
-    }
+    return false;
   },
   /**
    * 查询成绩
    */
-  GetScoreData: function (uid, pwd, cookie, vcode) {
-    wx.showToast({
-      title: "加载中...",
-      icon: "loading",
-      duration: 60000
-    })
-    var that = this;
+  getScoreData: function() {
+    var _this = this
+    const uid = app.globalData.edusysUserInfo.uid
+    const pwd = app.globalData.edusysUserInfo.password
     wx.request({
-      url: 'https://api.airmole.cn/ShellBox/v4/score.php',
+      url: `${app.globalData.domain}/edu/score`,
       method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      data: {
-        username: uid,
-        password: pwd,
-        cookie: cookie,
-        vcode: vcode
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          jsonContent: res.data,
-        })
-        if (res.data == 'null') {
-          wx.redirectTo({
-            url: '/pages/error/queryerror?ErrorTips=暂时无法查询'
-          })
-        }
+      data: { uid: uid, pwd: pwd, cookie: app.globalData.edusysUserInfo.cookie },
+      success: function(res) {
         if (res.statusCode == 200) {
-          if (res.data.code == "401" || res.data.desc == "学号、密码不正确？") {
-            that.reLogin();
-          }
-          that.setData({
-            isLoading: false
-          });
-          wx.hideToast();
-          wx.setStorageSync('p19Score', res.data);
-          that.charts();
-          wx.showToast({
-            title: "更新完成",
-            icon: "succeed",
-            duration: 2000
-          })
+          _this.setData({ isLoading: false, jsonContent: res.data })
+          wx.setStorageSync('myScore', res.data)
+          _this.charts();
+          wx.vibrateShort({ type: 'medium' })
+          wx.showToast({ title: '成绩已自动更新为最新', icon: 'none' })
         } else {
-          wx.redirectTo({
-            url: '/pages/error/queryerror?ErrorTips=' + res.data.desc
-          })
+          wx.showToast({ title: res.data.message, icon: 'none' })
         }
       }
     })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    var that = this;
-    that.onLoad();
-    wx.stopPullDownRefresh();
-    wx.showToast({
-      title: "更新完成",
-      icon: "succeed",
-      duration: 2000
-    })
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   //图表相关
-  createSimulationData: function () {
+  createSimulationData: function() {
     var that = this;
     var categories = [];
     var data1 = [];
@@ -158,17 +93,15 @@ Page({
       data2: data2,
     }
   },
-
-  touchHandler: function (e) {
-    // console.log(lineChart.getCurrentDataIndex(e));
+  touchHandler: function(e) {
     lineChart.showToolTip(e, {
       // background: '#7cb5ec',
-      format: function (item, category) {
+      format: function(item, category) {
         return category + ' ' + item.name + ':' + item.data
       }
     });
   },
-  charts: function (e) {
+  charts: function(e) {
     var that = this;
     var windowWidth = 320;
     try {
@@ -178,12 +111,10 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
     var simulationData = this.createSimulationData();
-    console.log(simulationData)
+    // console.log(simulationData)
     var that = this;
     if (simulationData.categories.length <= 0) {
-      that.setData({
-        showGraphic: false
-      })
+      that.setData({ showGraphic: false });
     } else {
       lineChart = new wxCharts({
         canvasId: 'lineCanvas',
@@ -192,21 +123,19 @@ Page({
         animation: true,
         background: '#7acfa6',
         series: [{
-          name: '算术平均分',
-          data: simulationData.data1,
-          format: (val) => val + "分"
-        },
-        {
-          name: '加权平均分',
-          data: simulationData.data2,
-          format: (val) => val + "分"
-        }
+            name: '算术平均分',
+            data: simulationData.data1,
+            format: (val) => val + "分"
+          },
+          {
+            name: '加权平均分',
+            data: simulationData.data2,
+            format: (val) => val + "分"
+          }
         ],
-        xAxis: {
-          disableGrid: true
-        },
+        xAxis: { disableGrid: true },
         yAxis: {
-          title: '每学期学分趋势',
+          title: '每学期成绩趋势',
           format: (val) => val.toFixed(2),
           min: 60
         },
@@ -218,42 +147,13 @@ Page({
           lineStyle: 'curve'
         }
       });
-
     }
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  // onShareAppMessage: function(res) {
-  //   // console.log(res);
-  //   return {
-  //     title: '诺~给你看看，这是我的成绩单!',
-  //     path: 'pages/score/score?isShareFrom=true&uid=' + this.data.stuId + '&pwd=' + this.data.password,
-  //   }
-  // },
-  //注销重登录
-  reLogin: function () {
-    app.globalData.uid = "";
-    app.globalData.pwd = "";
-    app.globalData.newpwd = "";
-    wx.setStorageSync('uid', '');
-    wx.setStorageSync('pwd', '');
-    wx.setStorageSync('newpwd', '');
-    wx.redirectTo({
-      url: '/pages/index/index'
-    })
   },
   eventDraw() {
     var that = this;
     if (that.data.shareImage != '') {
-      wx.previewImage({
-        urls: [that.data.shareImage],
-      })
-      wx.showToast({
-        title: '图片已保存至相册，记得分享给朋友们哟',
-        icon: 'none',
-        duration: 3000
-      })
+      wx.previewImage({ urls: [that.data.shareImage] });
+      wx.showToast({ title: '图片已保存至相册，记得分享给朋友们哟', icon: 'none' });
       return
     }
     wx.showLoading({
@@ -261,11 +161,10 @@ Page({
       mask: true
     })
 
-    let userNickName = app.globalData.nickName;
+    let userNickName = app.globalData.userInfo.nickName;
     if (userNickName == '') {
-      userNickName = that.data.stuId;
+      userNickName = app.globalData.edusysUserInfo.uid;
     }
-
     let nickName = {
       type: 'text',
       content: userNickName,
@@ -306,14 +205,14 @@ Page({
     var whitePaperHeight = (midNum * 20) + 35;
     var pushArr = [{
       type: 'image',
-      url: 'https://upload-images.jianshu.io/upload_images/4697920-b926d6f7b128a808.png',
+      url: 'https://img04.sogoucdn.com/app/a/100520146/5cb1ca706f3ec180d4673835a034b492',
       top: 0,
       left: 0,
       width: 600,
       height: 390
     }, {
       type: 'image',
-      url: 'https://upload-images.jianshu.io/upload_images/4697920-5207c6cb85bff54a.png',
+      url: 'https://img04.sogoucdn.com/app/a/100520146/a4a385cdbb7b17681863ab442a6f4984',
       top: 390 + whitePaperHeight,
       left: 0,
       width: 600,
@@ -447,7 +346,7 @@ Page({
       topX = topX + 20;
       let tempNo = {
         type: 'text',
-        content: newArr[i].SerialNo + '',
+        content: newArr[i].SerialNo ? newArr[i].SerialNo : '',
         fontSize: 14,
         color: '#000',
         textAlign: 'left',
@@ -602,20 +501,17 @@ Page({
         urls: [tempFilePath],
       })
       that.eventSave();
-      qq.openQzonePublish({
-        text: '成绩单',
-        media: [
-          {
-            type: 'photo',
-            path: tempFilePath
-          }
-        ]
-      })
     }
   },
-  refreshData: function () {
-    wx.redirectTo({
-      url: '/pages/index/vcode?to=score&update=1',
-    })
+  // 创建加载插屏广告
+  loadAds: function () {
+    if (wx.createInterstitialAd) {
+      interstitialAd = wx.createInterstitialAd({ adUnitId: 'adunit-5a3621a7eb4da121' });
+      if (interstitialAd) {
+        interstitialAd.show().catch((err) => {
+          console.error(err)
+        })
+      }
+    }
   }
 })

@@ -1,21 +1,3 @@
-function networkStatus() {
-  wx.getNetworkType({
-    success: function(res) {
-      if (res.errMsg !== 'getNetworkType:ok') {
-        wx.showModal({
-          content: '获取网络状态失败'
-        })
-        return false;
-      }
-      if (res.networkType === 'none') {
-        wx.showModal({
-          content: '当前网络不可用，请检查网络设置'
-        })
-        return false;
-      }
-    }
-  })
-}
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -31,62 +13,94 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+
 //格式化时间
-function formatTimes(date, t) {
+function wecquFormatTime(date, t) {
   var year = date.getFullYear();
   var month = date.getMonth() + 1;
   var day = date.getDate();
   var hour = date.getHours();
   var minute = date.getMinutes();
   var second = date.getSeconds();
-  if (t === 'h:m') {
-    return [hour, minute].map(formatNumber).join(':');
+  if(t === 'h:m') { return [hour, minute].map(formatNumber).join(':'); }
+  else { return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':'); }
+}
+
+function CompareDate(t1, t2) {
+  var date = new Date();
+  var t1Arr = t1.split(':');
+  var t2Arr = t2.split(':');
+  if (t1Arr[0] - t2Arr[0] < 0) {
+    return true;
+  } else if (t1Arr[0] == t2Arr[0]) {
+    if (t1Arr[1] - t2Arr[1] < 0)
+    return true;
   } else {
-    return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+    return false;
   }
 }
 
-function needThisWeekGo(thisweek, weekStr) {
-  console.log(thisweek)
-  var thisweek = thisweek;
-  const pattern1 = /\d{1,2}\-\d{1,2},\d{1,2}\-\d{1,2}\(周\)/;
-  const pattern2 = /\d{1,2}\-\d{1,2}\(周\)/;
-  const pattern3 = /\d{1,2}\(周\)/;
-  var p1Arr = weekStr.match(/\d{1,2}-\d{1,2}/g);
-  var p2Arr = weekStr.match(pattern2);
-  var p3Arr = weekStr.match(pattern3);
-  console.log(p2Arr)
-
-  // console.log(weekStr.match(pattern3))
-  if (weekStr.search(pattern1) > -1) {
-    let p1Arr1 = p1Arr[0].split('-');
-    let p1Arr2 = p1Arr[1].split('-');
-    if ((thisweek >= p1Arr1[0] && thisweek <= p1Arr1[1]) || (thisweek >= p1Arr2[0] && thisweek <= p1Arr2[1])) {
-      return true;
+function formatDateTime(inputTime, type) {
+	var date = new Date(inputTime);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    if(type) {
+    	return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;//2017-12-12 12:23:34    
     } else {
-      return false;
+    	return y + '-' + m + '-' + d; //2017-12-12
     }
-  } else if (weekStr.search(pattern2) > -1) {
-    let p2Arr1 = p2Arr[0].split('-');
-    if (thisweek >= p2Arr1[0] && thisweek <= p2Arr1[1]) {
-      return true;
-    } else {
-      return false;
-    }
-  } else if (weekStr.search(pattern3) > -1) {
-    let p3Arr1 = p3Arr[0].split('(');
-    if (thisweek == p3Arr1[0]) {
-      return true;
-    } else {
-      return false;
-    }
-  } else {
-    console.log('util.js无法处理传入的参数');
-    console.log(weekStr.search(pattern1));
-  }
 }
+
+//格局化日期：yyyy-MM-dd
+function formatDate(date) {
+	var myyear = date.getFullYear();
+	var mymonth = date.getMonth()+1;
+	var myweekday = date.getDate();
+ 
+	if(mymonth < 10){
+		mymonth = "0" + mymonth;
+	}
+	if(myweekday < 10){
+		myweekday = "0" + myweekday;
+	}
+	return (myyear+"-"+mymonth + "-" + myweekday);
+}
+
+function getCourseNoticeTimestamp (whichDayOfWeek, clocktime) {
+  clocktime = clocktime.length < 5 ? '0' + clocktime : clocktime;
+  var now = new Date(); //当前日期
+  var nowDayOfWeek = now.getDay(); //今天本周的第几天
+  var nowDay = now.getDate(); //当前日
+  var nowMonth = now.getMonth(); //当前月
+  var nowYear = now.getYear(); //当前年
+  nowYear += (nowYear < 2000) ? 1900 : 0;
+  var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
+  var en_dayWeek_array = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday','sunday'];
+  var whichDayOfWeekIndex = en_dayWeek_array.indexOf(whichDayOfWeek) ? en_dayWeek_array.indexOf(whichDayOfWeek) : 0;
+  var targetDayDate = formatDateTime(weekStartDate.getTime() + whichDayOfWeekIndex*3600000*24);
+  var finalDatetime = targetDayDate + ' ' + clocktime + ':00.0';
+  // console.log(finalDatetime)
+  finalDatetime = finalDatetime.substring(0,19);
+  finalDatetime = finalDatetime.replace(/-/g,'/'); 
+  var result = new Date(finalDatetime).getTime().toString().slice(0, -3);
+  // console.log(result)
+  return result;
+}
+
 module.exports = {
-  formatTimes: formatTimes,
   formatTime: formatTime,
-  needThisWeekGo: needThisWeekGo,
+  wecquFormatTime: wecquFormatTime,
+  CompareDate: CompareDate,
+  getCourseNoticeTimestamp: getCourseNoticeTimestamp,
+  formatDate: formatDate,
+  formatDateTime: formatDateTime
 }

@@ -1,0 +1,76 @@
+<!--pages/school/aboutus.wxml-->
+<view class="container page">
+  <view class="header">
+    <view class="black-cover">
+    </view>
+    <image class="logo" src="https://img02.sogoucdn.com/app/a/100520146/cc723653b7afba6d8cdab81ecb4fcc89">
+    </image>
+    <image class="title" src="/images/title.png">
+    </image>
+  </view>
+  <view class="bg-wegreen padding">
+    <view class="bg-white radius">
+      <view class="radius">
+        <view class="version radius">
+          <view class="version-title">
+            <text class="title-name"> <text class="cuIcon-titles text-wegreen"></text> 贝壳小盒子</text>
+            <view class="cu-tag line-wegreen">公测 {{version}}</view>
+          </view>
+          <view class="weui-cell__ft">
+            <view bindtap="checkUpdate" class="cu-tag bg-wegreen"><text class="cuIcon-down"></text> 检测更新</view>
+          </view>
+        </view>
+
+
+        <view class="margin-bottom-sm"><official-account></official-account></view>
+        <view class="padding">
+          <view class="desc-title">
+            <text class="cuIcon-titles text-wegreen"></text>更新说明
+          </view>
+          <view class="desc-content margin-left" style="text-indent:2em;"><text>如您所见，小盒子3.0版本着力于解决万恶恼人的验证码识别问题，并对原有的界面功能增强改进加以润色，限于时间仓促，事务繁琐，3.0新版至今仍是半成品，诸多功能尚未实现，设计交互考虑欠周，请各位同学海涵。同时欢迎有志向一起学习开发小程序的小伙伴们</text>加入我们，一同并肩作战贡献力量。</view>
+
+          <view class="desc-title"> <text class="cuIcon-titles text-wegreen"></text> 简介</view>
+          <view class="desc-content" style='text-indent:2em;'>
+            贝壳小盒子（ShellBox）是一款微信小程序，致力于帮助我们北京科技大学天津学院的师生更方便的查询教务、图书、用电等信息，以及浏览学院校历、拨打各系部电话，并提供校园内地理导航等功能。</view>
+          <view class="desc-content" style='text-indent:2em;'>贝壳小盒子目前还处于公测阶段，有一系列新的功能正在我们的开发计划中。“你想要的，都在这里！”</view>
+          <image bindtap="showAppCode" class="weui-article__img"
+            src="https://img01.sogoucdn.com/app/a/100520146/960d5c25b407197b2f44fdb438b962f8" mode="widthFix"
+            style="width:100%;border-radius:25rpx;" />
+          <view class="desc-content text-red">*: 微信小程序版本开发维护优先于QQ版本小程序，强烈建议优先使用微信小程序版贝壳小盒子</view>
+
+          <view class="desc-title">
+            <text class="cuIcon-titles text-wegreen"></text>数据来源
+          </view>
+          <view class="desc-content margin-left">
+            <text decode="true">
+              * 课表、成绩等数据来自教务处官网 \r\n
+              * 图书相关信息来自图书馆官网以及豆瓣 \r\n
+              * 校历、各系部联系电话来自于学院官方网站 \r\n
+              * 用电数据、网费信息来自智慧校园 \r\n
+            </text>
+          </view>
+
+          <view class="desc-title">
+            <text class="cuIcon-titles text-wegreen"></text> 开发贡献
+          </view>
+          <view class="flex">
+            <view data-weibo="{{item.weibo}}" class="flex flex-direction text-center margin-left" wx:for="{{coder}}" wx:key="coderkey">
+              <view class="text-center cu-avatar lg round avatar-border" style="background-image:url({{item.avatar}});">
+              </view>
+              <view class="text-center text-cut" style="width:60px;">{{item.nickName}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex margin-top-xl margin-bottom-xl">
+      <button open-type="openGroupProfile" group-id="719700279" bindlongpress="canBeFree" class="margin flex-sub cu-btn bg-green lg shadow-blur"><text
+          class="cuIcon-service"></text>联系客服</button>
+      <button open-type="share" class="margin flex-sub cu-btn bg-green lg shadow-blur"><text
+          class="cuIcon-share"></text>分享</button>
+    </view>
+
+  </view>
+
+</view>
