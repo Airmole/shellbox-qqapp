@@ -5,10 +5,10 @@
   </view>
   <block wx:else>
     <view>
-      <image class="title" src="https://img01.sogoucdn.com/app/a/100520146/58d2a4392f99ea7279f6080f32778d40"></image>
+      <image class="title" src="https://i.loli.net/2021/08/08/Ld6RvQBanskWNA4.png"></image>
       <view class="content">
         <view class="hd" style="transform:rotateZ({{angle}}deg);">
-          <image class="logo" src="https://img01.sogoucdn.com/app/a/100520146/f9d97304fda687228a7a9e50f9887cb6"></image>
+          <image class="logo" src="https://i.loli.net/2021/08/09/BAiIltLOVGERuDH.png"></image>
           <image class="wave" src="/images/wave.png" mode="aspectFill"></image>
           <image class="wave wave-bg" src="/images/wave.png" mode="aspectFill"></image>
         </view>

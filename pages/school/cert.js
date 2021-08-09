@@ -257,10 +257,16 @@ Page({
   },
   goToHook(e) {
     const hookId = e.currentTarget.dataset.target
-    wx.pageScrollTo({
-      duration: 2500,
-      selector: '#' + hookId
-    })
+
+    const query = qq.createSelectorQuery()
+    query.select(`#${hookId}`).boundingClientRect(function (rect) {
+      // console.log(rect.top)
+      const hookTop = rect.top - 30
+      wx.pageScrollTo({
+        duration: 2500,
+        scrollTop: hookTop
+      })
+    }).exec()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

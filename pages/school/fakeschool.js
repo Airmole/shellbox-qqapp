@@ -8,13 +8,13 @@ Page({
   data: {
     data: {
       swiper: [
-        'https://img04.sogoucdn.com/app/a/100520146/fe73d089528282c1e1c71baf883cccfb?p=1',
-        'https://img04.sogoucdn.com/app/a/100520146/fac75b7c1e02f34419e8df3a6c36c165?p=1'
+        'https://i.loli.net/2021/08/08/OXpCYdShjFJD8T1.png',
+        'https://i.loli.net/2021/08/08/GamBJjIhu3DySZV.png'
       ],
-      features: 'https://img03.sogoucdn.com/app/a/100520146/1a6177986913ce30ca13a14e14343379?p=1',
-      image1: 'https://img01.sogoucdn.com/app/a/100520146/3094e341e0ae57b9231866a05117cf0f?p=1',
-      image2: 'https://s3.bmp.ovh/imgs/2021/08/7ad9cdeac7c5eeaf.jpeg?p=1',
-      tabbar: 'https://img01.sogoucdn.com/app/a/100520146/7eacd4c4353648152c1517c325ba06de?p=1'
+      features: 'https://i.loli.net/2021/08/08/OasSKyY25QcATCL.png',
+      image1: 'https://i.loli.net/2021/08/08/mGwya2F7rBVcRvS.png',
+      image2: 'https://i.loli.net/2021/08/08/uZ9nAi5SgtdGqxD.jpg',
+      tabbar: 'https://i.loli.net/2021/08/08/yQSrLHA3YNiJgZl.png'
     }
   },
 

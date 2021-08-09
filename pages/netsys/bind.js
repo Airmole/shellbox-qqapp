@@ -9,7 +9,7 @@ Page({
     passwd_focus: false,
     netid: '',
     passwd: '',
-    bgimg: 'https://upload-images.jianshu.io/upload_images/4697920-1c843e824d46d5b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240',
+    bgimg: 'https://i.loli.net/2021/08/08/927UuJYxRSZzgsH.png',
     angle: 0
   },
   onLoad: function (){

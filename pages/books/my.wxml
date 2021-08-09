@@ -26,7 +26,7 @@
     </view>
 
     <view class="margin radius padding-lr">
-      <image bindtap="export" src="https://upload-images.jianshu.io/upload_images/4697920-562ae6c043da1a43.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" mode="widthFix" style="width:100%;height:100%;"></image>
+      <image bindtap="export" src="https://i.loli.net/2021/08/08/fQDd8U9YNwvoKlW.jpg" mode="widthFix" style="width:100%;height:100%;"></image>
     </view>
 
     <view class="user-jy">

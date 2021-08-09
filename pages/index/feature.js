@@ -9,7 +9,7 @@ Page({
     QGroupModal: false,
     quanyiModal: false,
     clickAvatarCount: 1,
-    backgroundImage: 'https://upload-images.jianshu.io/upload_images/4697920-65af0059363fb4b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240',
+    backgroundImage: 'https://i.loli.net/2021/08/08/lg9nHiD5fRe1Ar6.png',
     canShake: false,
     iconList: [{
       id: 'myCourse',
