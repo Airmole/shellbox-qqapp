@@ -127,6 +127,7 @@
     </block>
 
     <!-- 电费信息 -->
+    <!--
     <feecard
       isShow="{{!(hasBindElesys && !elesysData)}}"
       title="寝室电费"
@@ -143,6 +144,7 @@
       unbindTips="绑定关联寝室电费信息"
       unbindButton="绑定寝室"
     ></feecard>
+     -->
 
      <!-- 网费信息 -->
      <feecard

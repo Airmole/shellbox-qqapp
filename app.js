@@ -13,13 +13,11 @@ App({
   },
   onLaunch: function () {
     let launchInfo = wx.getLaunchOptionsSync()
-    const accountInfo = wx.getAccountInfoSync()
-    if (accountInfo.miniProgram.envVersion == 'release') {
-      this.globalData.domain = 'https://shellbox.airmole.cn/api'
-    } else {
-      this.globalData.domain = 'https://dev.shellbox.airmole.cn/api'
-      // this.globalData.domain = 'http://shellbox.cn/api'
-    }
+
+    this.globalData.domain = 'https://shellbox.airmole.cn/api'
+    // this.globalData.domain = 'https://dev.shellbox.airmole.cn/api'
+    // this.globalData.domain = 'http://shellbox.cn/api'
+
     this.getUserOpenId()
     this.appUpdate()
     this.checkHasEdusysStorage()
