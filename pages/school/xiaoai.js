@@ -7,16 +7,16 @@ Page({
   data: {
     isLoading:true,
     guideImages:[
-      'https://img02.sogoucdn.com/app/a/100520146/56e707d84210b570c9c85284a23cc2e9',
-      'https://img01.sogoucdn.com/app/a/100520146/7da60cd40ccc667397e354bad920a4d9',
-      'https://img01.sogoucdn.com/app/a/100520146/8fea63662eb74fd47b23944cf7e6e403',
-      'https://img04.sogoucdn.com/app/a/100520146/c11497307452e5cf745a95d5aa8a8569',
-      'https://img04.sogoucdn.com/app/a/100520146/cbab30ebb9aedc6c5e4f2d9c21bc159b',
-      'https://img04.sogoucdn.com/app/a/100520146/1af3b62758094f013451ea44a8b58c06',
-      'https://img04.sogoucdn.com/app/a/100520146/5459cdd343eea60f66377d3669be326b',
-      'https://img02.sogoucdn.com/app/a/100520146/e0841c1a7fc45d63b2ec45bd661fc4e3',
-      'https://img03.sogoucdn.com/app/a/100520146/e0841c1a7fc45d63b2ec45bd661fc4e3',
-      'https://img01.sogoucdn.com/app/a/100520146/f77d1f179846521a726848f72dfc43b2'
+      'https://i.loli.net/2021/08/08/gXxOEnia1rUW2DB.png',
+      'https://i.loli.net/2021/08/08/uyzMNtKke6QglJa.png',
+      'https://i.loli.net/2021/08/08/tTLlOgvwo3rWAqs.png',
+      'https://i.loli.net/2021/08/08/Q2TzPrIZvyD8dMW.png',
+      'https://i.loli.net/2021/08/08/GTxO3n1sriJ2Khu.png',
+      'https://i.loli.net/2021/08/08/9vb7IH5N2QPoDOs.png',
+      'https://i.loli.net/2021/08/08/gSv2LD59YylurIa.png',
+      'https://i.loli.net/2021/08/08/O4Xs3qZBC6HGwlv.png',
+      'https://i.loli.net/2021/08/08/sXNcURIWQlDjJ68.png',
+      'https://i.loli.net/2021/08/08/8nNIZhABgaoQuW5.png'
     ]
   },
 
@@ -95,7 +95,7 @@ Page({
     return {
       title: '“贝壳小盒子” - 小爱课程表使用指南',
       path: 'pages/school/xiaoai',
-      imageUrl:'https://upload-images.jianshu.io/upload_images/4697920-54d96e5c39485080.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240'
+      imageUrl:'https://i.loli.net/2021/08/09/tpcyhIXmFGY9MWn.png'
     }
   }
 })
