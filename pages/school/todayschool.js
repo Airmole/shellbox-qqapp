@@ -14,8 +14,8 @@ Page({
     color: '#75F454',
     pageType: 'inschool',
     confirmed: false,
-    inConfirmBtn: 'https://img04.sogoucdn.com/app/a/100520146/62e863b409f33969bf7779558e02d15c',
-    outConfirmBtn: 'https://img02.sogoucdn.com/app/a/100520146/887962488d6083107cff6d0c75c9fd1c'
+    inConfirmBtn: 'https://cdn.cardcat.cn/images/fd16b4294d5c431ef98a972573482245.png',
+    outConfirmBtn: 'https://cdn.cardcat.cn/images/c587a4779a699bae6e9b06e1b4548c48.png'
   },
 
   /**

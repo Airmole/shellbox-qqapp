@@ -8,13 +8,13 @@ Page({
   data: {
     data: {
       swiper: [
-        'https://img04.sogoucdn.com/app/a/100520146/fe73d089528282c1e1c71baf883cccfb?p=1',
-        'https://img04.sogoucdn.com/app/a/100520146/fac75b7c1e02f34419e8df3a6c36c165?p=1'
+        'https://cdn.cardcat.cn/images/3cfefeb2ff670e87d0cf8d2518ee2585.png',
+        'https://cdn.cardcat.cn/images/7c14d6bc3619d76225e46fc383b952bd.png'
       ],
-      features: 'https://img03.sogoucdn.com/app/a/100520146/1a6177986913ce30ca13a14e14343379?p=1',
-      image1: 'https://img01.sogoucdn.com/app/a/100520146/3094e341e0ae57b9231866a05117cf0f?p=1',
-      image2: 'https://s3.bmp.ovh/imgs/2021/08/7ad9cdeac7c5eeaf.jpeg?p=1',
-      tabbar: 'https://img01.sogoucdn.com/app/a/100520146/7eacd4c4353648152c1517c325ba06de?p=1'
+      features: 'https://cdn.cardcat.cn/images/cc33c507d9d850b9a1c40a03a7e0cdde.png',
+      image1: 'https://cdn.cardcat.cn/images/d8dbd87f6c21f80e0be38d5f8a1b6a5e.png',
+      image2: 'https://cdn.cardcat.cn/images/6884ce9f7ad9cdeac7c5eeafba92ccfc.jpeg',
+      tabbar: 'https://cdn.cardcat.cn/images/9b2e55a4556863925f04d2986a386e18.png'
     }
   },
 

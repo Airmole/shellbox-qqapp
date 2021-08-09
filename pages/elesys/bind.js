@@ -11,7 +11,7 @@ Page({
     building_focus: false,
     room_focus: false,
     room: '',
-    bgimg: 'https://img01.sogoucdn.com/app/a/100520146/f5ea5875d416b0431687655bf3309e6d',
+    bgimg: 'https://cdn.cardcat.cn/images/f5ea5875d416b0431687655bf3309e6d.png',
     angle: 0
   },
   onLoad: function (){

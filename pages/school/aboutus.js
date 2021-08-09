@@ -10,17 +10,17 @@ Page({
     version: '3.2.1',
     QGroupModal: false,
     showFreedomFunc: false,
-    weappCodeImage: 'https://img01.sogoucdn.com/app/a/100520146/960d5c25b407197b2f44fdb438b962f8',
+    weappCodeImage: 'https://cdn.cardcat.cn/images/960d5c25b407197b2f44fdb438b962f8.png',
     coder: [{
-      avatar: 'https://img03.sogoucdn.com/app/a/100520146/f297a18ca339f4431dc2d9b3cd84a7dd',
+      avatar: 'https://cdn.cardcat.cn/images/f297a18ca339f4431dc2d9b3cd84a7dd.png',
       nickName: 'Airmole',
       weibo: 'pages/profile/profile?objectUid=2423156830&nickname=Airmole'
     }, {
-      avatar: 'https://img03.sogoucdn.com/app/a/100520146/83b8baba7efa7c7976b73404105522eb',
+      avatar: 'https://cdn.cardcat.cn/images/83b8baba7efa7c7976b73404105522eb.png',
       nickName: '很奔放',
       weibo: ''
     }, {
-      avatar: 'https://img03.sogoucdn.com/app/a/100520146/2517981aa0eaa853f3b967313f300f9f',
+      avatar: 'https://cdn.cardcat.cn/images/2517981aa0eaa853f3b967313f300f9f.png',
       nickName: '秃头程序媛',
       weibo: ''
     }]

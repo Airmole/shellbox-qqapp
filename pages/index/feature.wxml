@@ -6,7 +6,7 @@
     </view>
     <view class="margin-top-sm nickname" wx:if="{{hasEdusysStorage}}">{{edusysUserInfo.uid}}</view>
     <view class="margin-top-sm nickname" bindtap="goLogin" wx:else><open-data type="userNickName"></open-data>您尚未登录</view>
-    <image src="https://img02.sogoucdn.com/app/a/100520146/cbde6f5e83388a096d28fab7339d56fd" mode="scaleToFill" class="gif-wave"></image>
+    <image src="https://cdn.cardcat.cn/images/cbde6f5e83388a096d28fab7339d56fd.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
 
   <view class="cu-list grid col-5 no-border">
