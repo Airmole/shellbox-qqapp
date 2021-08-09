@@ -9,7 +9,7 @@ Page({
     passwd_focus: false,
     netid: '',
     passwd: '',
-    bgimg: 'https://i.loli.net/2021/08/08/927UuJYxRSZzgsH.png',
+    bgimg: 'https://cdn.cardcat.cn/images/288dd120ae2d9f84fa59ffadc6cdfbad.png',
     angle: 0
   },
   onLoad: function (){

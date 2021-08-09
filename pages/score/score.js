@@ -205,14 +205,14 @@ Page({
     var whitePaperHeight = (midNum * 20) + 35;
     var pushArr = [{
       type: 'image',
-      url: 'https://i.loli.net/2021/08/09/OSVeFbnq8l7H2iD.png',
+      url: 'https://cdn.cardcat.cn/images/238fd836c8f7f8078b022e0e279bc0e4.png',
       top: 0,
       left: 0,
       width: 600,
       height: 390
     }, {
       type: 'image',
-      url: 'https://i.loli.net/2021/08/09/Ca3HWXeKUAgBOyY.png',
+      url: 'https://cdn.cardcat.cn/images/59e676394b92124818bbf782dc1ac276.png',
       top: 390 + whitePaperHeight,
       left: 0,
       width: 600,

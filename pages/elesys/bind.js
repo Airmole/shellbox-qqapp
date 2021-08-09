@@ -11,7 +11,7 @@ Page({
     building_focus: false,
     room_focus: false,
     room: '',
-    bgimg: 'https://i.loli.net/2021/08/08/wXiTzWF6RtjLD5b.png',
+    bgimg: 'https://cdn.cardcat.cn/images/f5ea5875d416b0431687655bf3309e6d.png',
     angle: 0
   },
   onLoad: function (){

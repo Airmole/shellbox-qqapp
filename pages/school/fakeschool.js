@@ -8,13 +8,13 @@ Page({
   data: {
     data: {
       swiper: [
-        'https://i.loli.net/2021/08/08/OXpCYdShjFJD8T1.png',
-        'https://i.loli.net/2021/08/08/GamBJjIhu3DySZV.png'
+        'https://cdn.cardcat.cn/images/3cfefeb2ff670e87d0cf8d2518ee2585.png',
+        'https://cdn.cardcat.cn/images/7c14d6bc3619d76225e46fc383b952bd.png'
       ],
-      features: 'https://i.loli.net/2021/08/08/OasSKyY25QcATCL.png',
-      image1: 'https://i.loli.net/2021/08/08/mGwya2F7rBVcRvS.png',
-      image2: 'https://i.loli.net/2021/08/08/uZ9nAi5SgtdGqxD.jpg',
-      tabbar: 'https://i.loli.net/2021/08/08/yQSrLHA3YNiJgZl.png'
+      features: 'https://cdn.cardcat.cn/images/cc33c507d9d850b9a1c40a03a7e0cdde.png',
+      image1: 'https://cdn.cardcat.cn/images/d8dbd87f6c21f80e0be38d5f8a1b6a5e.png',
+      image2: 'https://cdn.cardcat.cn/images/6884ce9f7ad9cdeac7c5eeafba92ccfc.jpeg',
+      tabbar: 'https://cdn.cardcat.cn/images/9b2e55a4556863925f04d2986a386e18.png'
     }
   },
 

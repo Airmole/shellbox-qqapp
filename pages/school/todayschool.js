@@ -14,8 +14,8 @@ Page({
     color: '#75F454',
     pageType: 'inschool',
     confirmed: false,
-    inConfirmBtn: 'https://i.loli.net/2021/08/08/ymOVsndJzlw7a3e.png',
-    outConfirmBtn: 'https://i.loli.net/2021/08/08/OoUlEciJLAZXg2P.png'
+    inConfirmBtn: 'https://cdn.cardcat.cn/images/fd16b4294d5c431ef98a972573482245.png',
+    outConfirmBtn: 'https://cdn.cardcat.cn/images/c587a4779a699bae6e9b06e1b4548c48.png'
   },
 
   /**
