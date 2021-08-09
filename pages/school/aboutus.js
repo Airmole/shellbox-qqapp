@@ -10,17 +10,17 @@ Page({
     version: '3.2.1',
     QGroupModal: false,
     showFreedomFunc: false,
-    weappCodeImage: 'https://i.loli.net/2021/08/08/26xBKcidh7fqDFN.png',
+    weappCodeImage: 'https://cdn.cardcat.cn/images/960d5c25b407197b2f44fdb438b962f8.png',
     coder: [{
-      avatar: 'https://i.loli.net/2021/08/08/TYmWVi3AGcnhbyk.png',
+      avatar: 'https://cdn.cardcat.cn/images/f297a18ca339f4431dc2d9b3cd84a7dd.png',
       nickName: 'Airmole',
       weibo: 'pages/profile/profile?objectUid=2423156830&nickname=Airmole'
     }, {
-      avatar: 'https://i.loli.net/2021/08/08/wpyP5cUW3bTVZCQ.png',
+      avatar: 'https://cdn.cardcat.cn/images/83b8baba7efa7c7976b73404105522eb.png',
       nickName: '很奔放',
       weibo: ''
     }, {
-      avatar: 'https://i.loli.net/2021/08/08/ZWz7QdRHokbDG53.png',
+      avatar: 'https://cdn.cardcat.cn/images/2517981aa0eaa853f3b967313f300f9f.png',
       nickName: '秃头程序媛',
       weibo: ''
     }]

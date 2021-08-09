@@ -15,7 +15,7 @@
   color: #fff;
   font-weight: 300;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  background-image: url('https://i.loli.net/2021/08/08/lg9nHiD5fRe1Ar6.png');
+  background-image: url('https://cdn.cardcat.cn/images/a211f3be3ce3425091ccca34489571db.png');
 }
 
 .UCenter-bg text {

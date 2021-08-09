@@ -9,7 +9,7 @@ Page({
     QGroupModal: false,
     quanyiModal: false,
     clickAvatarCount: 1,
-    backgroundImage: 'https://i.loli.net/2021/08/08/lg9nHiD5fRe1Ar6.png',
+    backgroundImage: 'https://cdn.cardcat.cn/images/a211f3be3ce3425091ccca34489571db.png',
     canShake: false,
     iconList: [{
       id: 'myCourse',

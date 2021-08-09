@@ -7,7 +7,7 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
     isLoading: true,
-    guomaoQrcode: 'https://i.loli.net/2021/08/09/eYCO3lusqLWFybI.png',
+    guomaoQrcode: 'https://cdn.cardcat.cn/images/29d192a78cb5849220041c11c2f70a1d.png',
     chelaileWeappid: '1109845492',
     bus160: [
       '北京科技大学天津学院西门',
