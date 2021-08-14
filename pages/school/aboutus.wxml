@@ -33,10 +33,11 @@
           <view class="desc-content" style='text-indent:2em;'>
             贝壳小盒子（ShellBox）是一款微信小程序，致力于帮助我们北京科技大学天津学院的师生更方便的查询教务、图书、用电等信息，以及浏览学院校历、拨打各系部电话，并提供校园内地理导航等功能。</view>
           <view class="desc-content" style='text-indent:2em;'>贝壳小盒子目前还处于公测阶段，有一系列新的功能正在我们的开发计划中。“你想要的，都在这里！”</view>
-          <image bindtap="showAppCode" class="weui-article__img"
+          <!-- QQ小程序屁事真多，自己垃圾，还不准放微信公众号二维码 -->
+          <!-- <image bindtap="showAppCode" class="weui-article__img"
             src="https://cdn.cardcat.cn/images/960d5c25b407197b2f44fdb438b962f8.png" mode="widthFix"
             style="width:100%;border-radius:25rpx;" />
-          <view class="desc-content text-red">*: 微信小程序版本开发维护优先于QQ版本小程序，强烈建议优先使用微信小程序版贝壳小盒子</view>
+          <view class="desc-content text-red">*: 微信小程序版本开发维护优先于QQ版本小程序，强烈建议优先使用微信小程序版贝壳小盒子</view> -->
 
           <view class="desc-title">
             <text class="cuIcon-titles text-wegreen"></text>数据来源

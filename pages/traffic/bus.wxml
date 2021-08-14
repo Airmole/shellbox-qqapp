@@ -23,10 +23,11 @@
       <view class="bg-green light padding radius shadow-blur margin-bottom">
         <view class="bg-green light padding radius shadow-blur">
           <view class="text-lg text-center text-black">受疫情影响长期停运,建议考虑其他方式</view>
-          <view class="margin-top-sm text-Abc text-black text-center" bindtap="showBjBusQrcode">
+          <!-- QQ小程序屁事真多，自己垃圾，还不准放微信公众号二维码 -->
+          <!-- <view class="margin-top-sm text-Abc text-black text-center" bindtap="showBjBusQrcode">
             <image src="{{guomaoQrcode}}" style="width: 150px;height: 150px;"/>
             <text>\n国贸大巴运营公众号</text>
-          </view>
+          </view> -->
         </view>
       </view>
 
