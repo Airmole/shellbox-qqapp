@@ -1,7 +1,10 @@
 name: CI
 
-#写法一：在push事件时触发构建
-on: [push] 
+#在master分支的push操作时触发构建
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   build-qq-ci: #job名称
