@@ -1,0 +1,28 @@
+name: CI
+
+#写法一：在push事件时触发构建
+on: [push] 
+
+jobs:
+  build-qq-ci: #job名称
+
+    runs-on: ubuntu-latest #运行环境
+
+    steps:
+    
+	#第一步：获取小程序源码
+    - name: Checkout 
+      uses: actions/checkout@master
+      
+	#第二步：上传小程序版本到管理端，并将此版本设置为体验版（设置体验版可选）
+    - name: Build 
+      uses: docker://qqminiapp/build:latest 
+      env: 
+        PLUGIN_APPTOKEN: ${{ secrets.APPTOKEN }}
+        PLUGIN_BUILDUSER: ${{ github.actor }} 
+        PLUGIN_EXPERIENCE: true 
+        #PLUGIN_PREVIEW: true
+        #PLUGIN_FIRSTPAGE: pages/index/index
+        PLUGIN_USEPACKAGEJSON: true
+        #PLUGIN_NPMBUILD: true
+        #PLUGIN_SOURCECODEPATH: ./test
