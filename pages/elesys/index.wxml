@@ -1,7 +1,4 @@
 <!--pages/elesys/index.wxml-->
-<cu-custom bgColor="bg-netfee" isCustom="{{true}}">
-  <view slot="content">电费查询</view>
-</cu-custom>
 <view class="container" wx:if="{{!isLoading && !errorTips}}">
   <view class="result-page" style='width:100%;'>
     <view class="result-userInfo result-model">

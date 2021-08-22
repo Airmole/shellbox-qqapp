@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#8345DB",
+  "navigationBarTitleText": "运动排行 - 贝壳小盒子",
+  "usingComponents": {
+    "tips": "../../index/component/tips"
+  }
+}
