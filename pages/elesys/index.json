@@ -1,4 +1,7 @@
 {
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#F7CC74",
+  "navigationBarTitleText": "电费查询",
   "usingComponents": {
     "tips": "../index/component/tips"
   }

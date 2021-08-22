@@ -48,6 +48,7 @@
     "pages/school/lost/edit",        // 失物招领发表编辑
     "pages/school/lost/index",       // 失物招领列表页面
     "pages/school/lost/detail"       // 失物招领内容展示
+    "pages/school/run/index"         // 运动计步排行榜
   ],
 ```
 
