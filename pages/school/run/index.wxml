@@ -1,20 +1,20 @@
 <!--pages/school/run/index.wxml-->
-<image class="image-width" src="https://gd-filems.dancf.com/mcm79j/mcm79j/51560/789140a2-ae2b-48bc-b679-eac7ae8495871762509.jpg" mode="widthFix"widthFix></image>
+<image class="image-width" src="https://gd-filems.dancf.com/mcm79j/mcm79j/51560/789140a2-ae2b-48bc-b679-eac7ae8495871762509.jpg" mode="widthFix" widthFix></image>
 
 <view class="bg-img" style="background-image: url({{fillImage}});margin-top: -5px;">
   <view class="padding-top-xs padding-lr-xl text-black">
     <scroll-view scroll-x class="bg-white nav">
       <view class="flex text-center">
         <view class="cu-item flex-sub {{index==type?'text-purple cur':''}}" wx:for="{{types}}" wx:key="index" bindtap="typeSelect" data-id="{{index}}">
-        {{ item.name }}
+          {{ item.name }}
         </view>
       </view>
     </scroll-view>
   </view>
 </view>
-<view class="bg-img" style="background-image: url({{fillImage}});">
-  <view class="padding-xl text-black">
-    <view class="padding-sm text-xl" wx:for="{{ranklist}}" wx:key="index">
+<view class="bg-img" style="background-image: url({{fillImage}});"  wx:for="{{ranklist}}" wx:key="index">
+  <view class="padding-lr-xl padding-tb-sm text-black">
+    <view class="padding-xs text-xl">
       <view class="flex align-center">
         <view class="number flex align-center justify-center">
           <block wx:if="{{index < 3}}">
@@ -27,19 +27,17 @@
         <view class="margin-left-sm">
           <view class="cu-avatar round lg" style="background-image:url({{item.wechater?item.wechater.avatar:item.qqer.avatar}});"></view>
         </view>
-        <view class="margin-tb-sm text-cut text-center" style="width: 250rpx;"><text class="text-lg">{{item.wechater ? item.wechater.nickname : item.qqer.nickname}}</text></view>
+        <view class="margin-tb-sm text-cut text-center" style="width: 240rpx;"><text class="text-lg">{{item.wechater ? item.wechater.nickname : item.qqer.nickname}}</text></view>
         <view class="padding-left-xs padding-tb-sm" style="width: 180rpx;">
-          <view class="text-right">
-            <text>{{item.steps}}</text><text class="text-df">步</text></view>
-          </view>
+          <view class="text-right"> <text>{{item.steps}}</text><text class="text-df">步</text></view>
+        </view>
       </view>
     </view>
     <view wx:if="{{ranklist.length < 1}}"><tips tipsText="暂时还没人上榜~"></tips></view>
   </view>
 </view>
 
-<image class="image-width" src="https://gd-filems.dancf.com/mcm79j/mcm79j/51560/7205d009-dc18-4c7f-8573-58500fa4df3e1785978.jpg" mode="widthFix"widthFix></image>
-
+<image class="image-width" src="https://gd-filems.dancf.com/mcm79j/mcm79j/51560/7205d009-dc18-4c7f-8573-58500fa4df3e1785978.jpg" mode="widthFix" widthFix></image>
 
 <view class="cu-bar bg-gradual-pink tabbar border shop foot" wx:if="{{personalRank[0]}}">
   <view class="">
