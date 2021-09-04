@@ -49,6 +49,8 @@
     "pages/school/lost/index",       // 失物招领列表页面
     "pages/school/lost/detail"       // 失物招领内容展示
     "pages/school/run/index"         // 运动计步排行榜
+    "pages/school/finance/bind"       // 缴费平台账号绑定
+    "pages/school/finance/index"      // 缴费查询界面
   ],
 ```
 
