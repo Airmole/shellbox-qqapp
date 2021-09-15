@@ -6,7 +6,12 @@
 
 ## 线上版本体验
 
-[![wTSOvk9gnYzZjPC.png](https://img03.sogoucdn.com/app/a/100520146/e945b3fabf51c61e459f8912ab0fc2b6)](小程序码)
+[![wTSOvk9gnYzZjPC.png](https://gd-filems.dancf.com/mcm79j/mcm79j/51560/865feba3-f38d-4458-a229-b3f44c37163b10422313.png)](小程序码)
+
+- 体验账号：000000000
+
+- 体验密码：test
+> 测试体验账号仅供预览展示效果，且”我的借阅“、"学费查询"、”网费查询“功能不支持使用体验账号。
 
 
 ## 页面路径说明
