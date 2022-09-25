@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    webImage: 'https://upload-images.jianshu.io/upload_images/4697920-2dd7151a15650336.png',
+    webImage: 'https://dev-cdn.cardcat.cn/images/a27c9b3747223d18804ec57e8dd14e5d.png',
     uid: '',
     password: ''
   },
