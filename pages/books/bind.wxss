@@ -349,3 +349,7 @@ form {
 page .wx-video-bar {
   display: none;
 }
+
+.infloor {
+  border: 1px solid #1CBBB4;
+}

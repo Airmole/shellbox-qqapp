@@ -19,87 +19,6 @@
 
   <block wx:if="{{activeIndex == 0}}">
     <view class="padding-sm">
-
-      <view class="bg-green light padding radius shadow-blur margin-bottom">
-        <view class="bg-green light padding radius shadow-blur">
-          <view class="text-lg text-center text-black">受疫情影响长期停运,建议考虑其他方式</view>
-          <!-- QQ小程序屁事真多，自己垃圾，还不准放微信公众号二维码 -->
-          <!-- <view class="margin-top-sm text-Abc text-black text-center" bindtap="showBjBusQrcode">
-            <image src="{{guomaoQrcode}}" style="width: 150px;height: 150px;"/>
-            <text>\n国贸大巴运营公众号</text>
-          </view> -->
-        </view>
-      </view>
-
-      <view class="bg-green light padding radius shadow-blur">
-        <view class="text-lg text-center text-black">京津新城 ←_→ 北京国贸</view>
-        <view class="margin-top-sm text-Abc text-black">
-          <view class="text-indent margin-bottom">班车往返于天津市京津新城公交站与北京国贸桥南艾维克酒店西门三环辅路，每日于京津新城与北京两地各发车2车次，每周五有加车。</view>
-          <view class="text-indent margin-bottom">新的运营车辆车牌号为：京B15506 ，白色大巴车。车辆风挡玻璃内有京津新城标识牌，请乘客注意。</view>
-          <view class="text-indent margin-bottom"><text class="text-red">提示：</text>
-            资料来源于网络搜集整理，仅供参考。节假日及特殊情况(比如如今疫情形势下)变动以“ <text class="text-blue"
-              bindtap="showBjBusQrcode">京津新城北京国贸商务班车</text> ”公众号通知为准。班车具体情况咨询站点服务人员。</view>
-        </view>
-      </view>
-
-      <view class="bg-green light padding radius shadow-blur margin-top">
-        <view class="text-lg text-center text-black">京津新城 出发</view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">发车时间</view>
-          <view class="flex-sub text-right">8:00,17:30</view>
-        </view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">周五加班车</view>
-          <view class="flex-sub text-right">10:30,13:00</view>
-        </view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">票价</view>
-          <view class="flex-sub text-right">￥36(支持微信/支付宝)</view>
-        </view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">购票、乘车地点</view>
-          <view class="flex-sub text-right">京津新城公交站 <view bindtap="goJJXCStation" class="cu-tag line-blue">导航前往</view>
-          </view>
-        </view>
-      </view>
-
-      <view class="bg-img bg-mask padding-tb-xl radius margin-top"
-        style="background-image: url('https://cdn.cardcat.cn/images/0ab2127d512d730ae6c7930b12a7b7c7.png');height: 350rpx;">
-      </view>
-
-      <view class="bg-green light padding radius shadow-blur margin-top">
-        <view class="text-lg text-center text-black">北京国贸 出发</view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">发车时间</view>
-          <view class="flex-sub text-right">7:30,16:00</view>
-        </view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">周五加班车</view>
-          <view class="flex-sub text-right">10:30,14:00</view>
-        </view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">票价</view>
-          <view class="flex-sub text-right">￥36(支持微信/支付宝)</view>
-        </view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">乘车地点</view>
-          <view class="flex-sub text-right"><text>北京国贸桥南艾维克酒店\r\n西门三环辅路</text>
-            <view bindtap="goBJGMStation" class="cu-tag line-blue">导航前往</view>
-          </view>
-        </view>
-        <view class="flex text-center text-black margin-top">
-          <view class="flex-sub text-left">购票</view>
-          <view class="flex-sub text-right"><text>来不及解释了，快上车。\r\n下车前会让你购票。</text></view>
-        </view>
-      </view>
-      <view class="padding flex flex-direction margin-bottom-xl">
-        <button class="cu-btn bg-green lg" open-type="share" id='BJ'>分享转发给好友</button>
-      </view>
-    </view>
-  </block>
-
-  <block wx:if="{{activeIndex == 1}}">
-    <view class="padding-sm">
       <view class="bg-green light padding radius shadow-blur">
         <view class="text-lg text-center text-black">京津新城 ←_→ 天津市区</view>
         <view class="margin-top-sm text-Abc text-black">
@@ -132,7 +51,7 @@
     </view>
   </block>
 
-  <block wx:if="{{activeIndex == 2}}">
+  <block wx:if="{{activeIndex == 1}}">
     <view class="padding-sm">
       <view class="bg-green light padding radius shadow-blur">
         <view class="text-lg text-center text-black">学院 ←_→ 宝坻 (公交：宝13路)</view>

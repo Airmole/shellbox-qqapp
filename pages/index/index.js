@@ -27,8 +27,7 @@ Page({
     elesysData: false,
     hasBindElesys: true,
     netsysData: false,
-    hasBindNetsys: false,
-    quanyiModal: false
+    hasBindNetsys: false
   },
   onLoad: function () {
     this.inital();
@@ -60,7 +59,7 @@ Page({
     var hasCourseCache = false;
     var todayCourses = [];
     var nextCourseArray = [];
-    var myCourse = wx.getStorageSync('myCourse')
+    var myCourse = wx.getStorageSync('myCourse') || {}
     var isGraduateStu = false
     if (myCourse != '' && Object.keys(myCourse).length > 0) {
       hasCourseCache = true
@@ -69,7 +68,6 @@ Page({
     if (app.globalData.hasEdusysStorage === true) {
       hasLogin = true;
     } else {
-      var edusysUserInfoCache = wx.getStorageSync('edusysUserInfo')
       try {
         if (edusysUserInfo.uid.length > 0) {
           app.globalData.hasEdusysStorage = true
@@ -164,7 +162,7 @@ Page({
   },
   getElesysInfo: function () {
     try {
-      const elesysUserInfo = wx.getStorageSync('elesysUserInfo')
+      let elesysUserInfo = wx.getStorageSync('elesysUserInfo') || {}
       app.globalData.elesysUserInfo = elesysUserInfo.building.length > 0 ? elesysUserInfo : ''
       this.getEleData(elesysUserInfo.building, elesysUserInfo.room)
     } catch (error) {
@@ -173,7 +171,7 @@ Page({
   },
   getNetsysInfo: function () {
     try {
-      const netsysUserInfo = wx.getStorageSync('netsysUserInfo')
+      let netsysUserInfo = wx.getStorageSync('netsysUserInfo') || {}
       app.globalData.netsysUserInfo = netsysUserInfo.netid.length > 0 ? netsysUserInfo : ''
       this.getNetData(netsysUserInfo.netid, netsysUserInfo.password, 'account')
     } catch (error) {
@@ -286,20 +284,13 @@ Page({
     })
   },
   onShareAppMessage: function (res) {
-      qq.showShareMenu({
-        showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
-      });
-      //总之就是在分享的方法里面要有qq.showShareMenu这段代码。
-      return {
-        title: '贝壳小盒子',
-        path: 'pages/index/index',
-      }
+    return {
+      title: '贝壳小盒子',
+      path: 'pages/index/index',
+    }
   },
   goToBookSearchPage: function () {
     wx.navigateTo({ url: '../books/search' })
-  },
-  showQuanyiModal: function () {
-    this.setData({ quanyiModal: true })
   },
   /**
    * 生命周期函数--监听页面隐藏

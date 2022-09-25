@@ -1,7 +1,11 @@
 <!--login.wxml-->
 <view class="container">
   <view class="remind-box" wx:if="{{remind}}">
-    <image class="remind-img" src="/images/loading.gif"></image>
+    <image class="remind-img" src="https://upload-images.jianshu.io/upload_images/4697920-65fe1e95184a027f.gif?imageMogr2/auto-orient/strip"></image>
+    <view class="text-white text-xl">正在登录，请耐心等候...</view>
+    <view class="cu-progress bg-white round margin-top">
+      <view class="bg-green" style="width:{{remind?(percent+'%'):''}};">{{percent}}%</view>
+    </view>
   </view>
   <block wx:else>
     <image class="title-login" src="/images/title.png"></image>
@@ -15,13 +19,11 @@
         <form class="login-form">
           <view class="input-group {{userid_focus ? 'active' : ''}}">
             <text class="input-label">帐号</text>
-            <input type="number" cursor-spacing="30" id="userid" maxlength="9" placeholder="学号或教务网账号"
-              bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" confirm-type="next" />
+            <input type="number" cursor-spacing="30" id="userid" maxlength="9" placeholder="学号或教务网账号" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" confirm-type="next" />
           </view>
           <view class="input-group {{passwd_focus ? 'active' : ''}}">
             <text class="input-label">密码</text>
-            <input password="true" cursor-spacing="30" id="passwd" placeholder="教务网密码" bindinput="passwdInput"
-              bindfocus="inputFocus" bindblur="inputBlur" confirm-type="next" />
+            <input password="true" cursor-spacing="30" id="passwd" placeholder="教务网密码" bindinput="passwdInput" bindfocus="inputFocus" bindblur="inputBlur" confirm-type="next" />
           </view>
           <!-- <view class="input-group {{vcode_focus ? 'active' : ''}}">
             <text class="input-label">验证码</text>
@@ -38,10 +40,7 @@
             </view>
           </view>
         </form>
-        <view wx:if="{{canIUseGetUserProfile}}" class="confirm-btn" bindtap="bind">
-          <text>确认绑定</text>
-        </view>
-        <button wx:else class="confirm-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        <button class="confirm-btn" bindtap="getUserInfo">
           <text>确认绑定</text>
         </button>
       </view>
@@ -61,7 +60,7 @@
             <view class="help-q">2、忘记密码？</view>
             <view class="help-a">
               <!-- <text bindtap="showResetModal" style="color:#8E54EC;">点击这里，重置教务系统密码。重置后教务系统密码也同步被修改。</text> -->
-              <view>忘记密码请重置找回教务系统密码。找回教务系统密码后使用教务密码登录即可。</view>
+              <view>忘记密码请重置找回教务系统密码。找回教务系统密码后使用教务密码登录即可。<text bindtap="showDoc" style="color:#8E54EC;">(找回教务密码文档)</text></view>
             </view>
             <view class="help-q">3、大一新生？暂时还没有学号😥</view>
             <view class="help-a">
@@ -85,18 +84,15 @@
       <view class="padding-xl text-left">
         <view class="cu-form-group margin-top {{userid_focus ? 'active' : ''}}">
           <view class="title">账号</view>
-          <input id="userid" placeholder="教务系统账号" type="number" value="{{userid}}" maxlength="9" confirm-type="next" bindinput="useridInput"
-            bindfocus="inputFocus" bindblur="inputBlur"></input>
+          <input id="userid" placeholder="教务系统账号" type="number" value="{{userid}}" maxlength="9" confirm-type="next" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur"></input>
         </view>
         <view class="cu-form-group margin-top" style="{{idcard_focus ? 'border: 2px solid #7acfa6;' : ''}}">
           <view class="title">身份证号</view>
-          <input id="idcard" placeholder="身份证号码" type="idcard" maxlength="18" bindinput="idcardInput"
-            confirm-type="next" bindfocus="inputFocus" bindblur="inputBlur"></input>
+          <input id="idcard" placeholder="身份证号码" type="idcard" maxlength="18" bindinput="idcardInput" confirm-type="next" bindfocus="inputFocus" bindblur="inputBlur"></input>
         </view>
         <view class="cu-form-group margin-top" style="{{passwd_focus ? 'border: 2px solid #7acfa6;' : ''}}">
           <view class="title">新密码</view>
-          <input id="passwd" placeholder="重置后的新密码" type="text"  maxlength="20" bindinput="passwdInput"
-            confirm-type="next" bindfocus="inputFocus" bindblur="inputBlur"></input>
+          <input id="passwd" placeholder="重置后的新密码" type="text" maxlength="20" bindinput="passwdInput" confirm-type="next" bindfocus="inputFocus" bindblur="inputBlur"></input>
         </view>
       </view>
       <view class="cu-bar bg-white justify-end">

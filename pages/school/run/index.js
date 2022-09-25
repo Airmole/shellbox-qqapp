@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    defaultAvatar: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+    avatar: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+    nickname: '',
     type: '0',
     fillImage: 'https://gd-filems.dancf.com/mcm79j/mcm79j/51560/9121e0b2-6f93-4300-ae22-07aa750658b91762508.jpg',
     top3icon: [
@@ -37,6 +40,10 @@ Page({
     this.inital(day)
   },
   inital: function  (day) {
+    const userInfo = wx.getStorageSync('edusysUserInfo') || {}
+    const avatar = userInfo.avatar ? userInfo.avatar : this.data.avatar
+    const nickname = userInfo.nickname ? userInfo.nickname : userInfo.uid
+    this.setData({ avatar: avatar, nickname: nickname })
     var _this = this
     wx.checkSession({
       success () {
@@ -72,7 +79,7 @@ Page({
     })
   },
   getPersonalRank: function (day = 'day') {
-    let userInfo = wx.getStorageSync('edusysUserInfo')
+    const userInfo = wx.getStorageSync('edusysUserInfo') || {}
     let uid = userInfo ? userInfo.uid : ''
     if (!uid) {
       wx.showToast({ title: '未登录只能浏览无法参与排行', icon: 'none' })
@@ -97,7 +104,7 @@ Page({
     let url = `${domain}/steps`
 
     let session_key = app.globalData.session_key
-    let userInfo = wx.getStorageSync('edusysUserInfo')
+    const userInfo = wx.getStorageSync('edusysUserInfo') || {}
     let uid = userInfo ? userInfo.uid : ''
     let para = {
       uid: uid,
