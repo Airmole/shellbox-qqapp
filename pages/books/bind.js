@@ -23,7 +23,7 @@ Page({
   onLoad: function(options) {
     var that = this
     var uid = app.globalData.edusysUserInfo.uid;
-    var pwd = wx.getStorageSync('opacPassword')
+    var pwd = wx.getStorageSync('opacPassword') || ''
     const from = options.from ? options.from : 'index'
     that.setData({
       defaultUid: uid,
@@ -36,8 +36,8 @@ Page({
     }
   },
   checkHasLogin: function() {
-    var uid = wx.getStorageSync('uid');
-    var pwd = wx.getStorageSync('opacPassword');
+    var uid = wx.getStorageSync('uid') || ''
+    var pwd = wx.getStorageSync('opacPassword') || ''
     if (uid != '' && pwd != '') {
       return true;
     } else {
@@ -67,17 +67,16 @@ Page({
         url: `${app.globalData.domain}/book/login/index`,
         method: "POST",
         data: {
-          uid: app.globalData.edusysUserInfo.uid,
+          uid: app.globalData.edusysUserInfo.uid ? app.globalData.edusysUserInfo.uid : uid,
           username: uid,
           password: pwd,
           cookie: that.data.PreInfo.cookie,
           vcode: vcode,
           token: that.data.PreInfo.token,
+          sca: that.data.PreInfo.sca
         },
         success: function(res) {
-          that.setData({
-            jsonStr: res.data,
-          })
+          that.setData({ jsonStr: res.data })
           // console.log(res.data)
           wx.hideToast()
           // console.log(res.data);
@@ -105,7 +104,8 @@ Page({
                 pwd: pwd,
                 vcode: vcode,
                 cookie: that.data.PreInfo.cookie,
-                token: that.data.PreInfo.token
+                token: that.data.PreInfo.token,
+                sca: that.data.PreInfo.sca
               };
               //设置本地Storage,维持登录态用
               wx.setStorageSync('opacPassword', pwd)

@@ -7,7 +7,7 @@ Page({
   data: {
     width: '100%',
     height: '',
-    version: '3.2.1',
+    version: '3.3.4',
     QGroupModal: false,
     showFreedomFunc: false,
     weappCodeImage: 'https://cdn.cardcat.cn/images/960d5c25b407197b2f44fdb438b962f8.png',
@@ -103,24 +103,5 @@ Page({
       this.setData({ showFreedomFunc: false })
       return
     }
-    
-    this.isFreedomer(app.globalData.edusysUserInfo.uid)
-  },
-  isFreedomer: function (uid = 0) {
-    var _this = this
-    wx.request({
-      url: `${app.globalData.domain}/freedomer/${uid}`,
-      timeout: app.globalData.requestTimeout,
-      method: 'GET',
-      success: function(res){
-        try {
-          if (res.data.code == 200 && res.data.message == 'success') {
-            wx.navigateTo({ url: './fakeschool' })
-          }
-        } catch (error) {
-          _this.setData({ showFreedomFunc: false })
-        }
-      }
-    })
   }
 })

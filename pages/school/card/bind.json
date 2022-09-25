@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "default",
+  "navigationBarTitleText": "一卡通关联",
+  "navigationBarBackgroundColor": "#FFCB63",
+  "enablePullDownRefresh": false,
+  "usingComponents": {}
+}

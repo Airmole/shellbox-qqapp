@@ -127,24 +127,22 @@
     </block>
 
     <!-- 电费信息 -->
-    <!--
     <feecard
       isShow="{{!(hasBindElesys && !elesysData)}}"
       title="寝室电费"
       titleRight="⚡️"
       bindedUrl="../elesys/index?building={{elesysData.building}}&room={{elesysData.room}}"
       bindedShow="{{elesysData.balance.length > 0}}"
-      bindedAccount="{{elesysData.building}}斋{{elesysData.room}}"
-      timeText="截止:{{elesysData.time}}"
+      bindedAccount="{{elesysData.building || ''}}斋{{elesysData.room || ''}}"
+      timeText="截止:{{elesysData.execTime || ''}}"
       contentTextLeft="剩余电量"
-      contentValue="{{elesysData.balance}}"
+      contentValue="{{elesysData.balance || ''}}"
       contentTextRight="度"
       unbindUrl="../elesys/bind"
       unbindShow="{{!hasBindElesys}}"
       unbindTips="绑定关联寝室电费信息"
       unbindButton="绑定寝室"
     ></feecard>
-     -->
 
      <!-- 网费信息 -->
      <feecard
@@ -153,10 +151,10 @@
       titleRight="🌐"
       bindedUrl="../netsys/index"
       bindedShow="{{netsysData.welcome.length > 0}}"
-      bindedAccount="{{netsysData.netid}}"
-      timeText=""
+      bindedAccount="账号:{{netsysData.netid || ''}}"
+      timeText="截止:{{netsysData.execTime || ''}}"
       contentTextLeft="网费余额"
-      contentValue="{{netsysData.leftMoney}}"
+      contentValue="{{netsysData.leftMoney || ''}}"
       contentTextRight="元"
       unbindUrl="../netsys/bind"
       unbindShow="{{!hasBindNetsys}}"

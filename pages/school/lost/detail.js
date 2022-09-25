@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    defaultAvatar: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
     isLoading: true,
     isPublisher: false,
     isRecevicer: false,
@@ -52,7 +53,7 @@ Page({
   },
   inital: function (options) {
     const id = options.id
-    const edusysInfo = wx.getStorageSync('edusysUserInfo')
+    const edusysInfo = wx.getStorageSync('edusysUserInfo') || {}
     const uid = edusysInfo != '' && edusysInfo.uid ? edusysInfo.uid : 0
     this.setData({ id: id, uid: uid })
     this.getDetailData(id)
